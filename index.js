@@ -51,4 +51,4 @@ client.get('details', {
       console.log(res)
       fs.writeFile('data.json', res)
   })
-  .catch(err => console.log(err))
+  .catch(err => {throw new Error(err)})
