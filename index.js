@@ -48,35 +48,33 @@ const search = async (query, sortDir, librarian) => {
 
 const details = async (id, librarian) => {
     return await client.get('details', {
-        id,
+        frabl: id,
         librarian,
     })
 }
 
-const startup = async () => {
+(async () => {
     try {
-        const searchData = await search('held', 'title', true)
+        const searchData = await search('weer', 'title', true)
 
         if (searchData) {
-            console.log(searchData)
-            fs.writeFile('search.json', searchData)
+            const parsedData = await JSON.parse(searchData)
+            const results = parsedData.aquabrowser && parsedData.aquabrowser.results && parsedData.aquabrowser.results.result || []
+
+
+            results.map(async result => {
+                const { frabl } = result
+                const { $t: frablId } = frabl || {}
+
+                const detailsData = await details(frablId, true)
+
+                if (detailsData) {
+                    console.log(detailsData)
+                }
+            })
         }
     } catch (error) {
         console.error(error)
         fs.writeFile('search.error.json', error)
     }
-
-    try {
-        const detailsData = await details('128970', true)
-
-        if (detailsData) {
-            console.log(detailsData)
-            fs.writeFile('details.json', detailsData)
-        }
-    } catch (error) {
-        console.error(error)
-        fs.writeFile('details.error.json', error)
-    }
-}
-
-startup()
+})()
