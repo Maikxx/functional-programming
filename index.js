@@ -46,9 +46,9 @@ const search = async (query, sortDir, librarian) => {
     })
 }
 
-const details = async (id, librarian) => {
+const details = async (frabl, librarian) => {
     return await client.get('details', {
-        frabl: id,
+        frabl,
         librarian,
     })
 }
@@ -59,17 +59,19 @@ const details = async (id, librarian) => {
 
         if (searchData) {
             const parsedData = await JSON.parse(searchData)
-            const results = parsedData.aquabrowser && parsedData.aquabrowser.results && parsedData.aquabrowser.results.result || []
+            const results = parsedData.aquabrowser
+                && parsedData.aquabrowser.results
+                && parsedData.aquabrowser.results.result
+                || []
 
-
-            results.map(async result => {
+            results.map(async result  => {
                 const { frabl } = result
                 const { $t: frablId } = frabl || {}
 
                 const detailsData = await details(frablId, true)
 
                 if (detailsData) {
-                    console.log(detailsData)
+                    console.log(JSON.parse(detailsData))
                 }
             })
         }
