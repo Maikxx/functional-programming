@@ -77,7 +77,11 @@ const getAvailabilityForResult = async result => {
     const availabilityData = await availability(frablId)
 
     if (availabilityData) {
-        console.log('Availability', JSON.parse(availabilityData))
+        const parsedData = await JSON.parse(availabilityData)
+        const meta = parsedData.aquabrowser && parsedData.aquabrowser.meta
+        const records = meta && meta.records
+
+        console.log('Availability Records', records)
     }
 }
 
