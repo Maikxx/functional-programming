@@ -22,3 +22,5 @@ I have thought of the following questions:
 4. How has the title/description length of books changed in the past _x_ years?
 5. How has the division between Dutch and English books at the OBA changed in the past _x_ years?
 6. How has the average age of authors changed in the past _x_ years?
+
+As for the rest of the day I mainly focussed on getting the _details_ and _availability_ route to work and show me data. I tried to split the code up in readable chunks as much as possible.
