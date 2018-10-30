@@ -11,3 +11,10 @@ After getting the assignment we got a bootcamp of Titus, which showed a lot of f
 
 The rest of the time we tried to get the API to work with JavaScript ([Node](https://nodejs.org/en/)). Here we already pretty much hit a wall, knowing that the API is really bad and outdated.
 
+### Day 2
+
+Today I started thinking of questions, which I could answer by looking at the data I could gather.
+I have thought of the following questions:
+
+1. Has the amount of different book genres published, in the past _x_ years, declined?
+2. Has the amount of books that is rented out decreased in the past _x_ years?
