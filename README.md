@@ -16,5 +16,9 @@ The rest of the time we tried to get the API to work with JavaScript ([Node](htt
 Today I started thinking of questions, which I could answer by looking at the data I could gather.
 I have thought of the following questions:
 
-1. Has the amount of different book genres published, in the past _x_ years, declined?
-2. Has the amount of books that is rented out decreased in the past _x_ years?
+1. How has the amount of different book genres published, in the past _x_ years, changed?
+2. How has the amount of books that are rented out changed in the past _x_ years?
+3. How has the amount of cover images on books changed in the past _x_ years?
+4. How has the title/description length of books changed in the past _x_ years?
+5. How has the division between Dutch and English books at the OBA changed in the past _x_ years?
+6. How has the average age of authors changed in the past _x_ years?
