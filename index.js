@@ -53,6 +53,17 @@ const details = async (frabl, librarian) => {
     })
 }
 
+const getDetailsForResult = async result => {
+    const { frabl } = result
+    const { $t: frablId } = frabl || {}
+
+    const detailsData = await details(frablId, true)
+
+    if (detailsData) {
+        console.log(JSON.parse(detailsData))
+    }
+}
+
 (async () => {
     try {
         const searchData = await search('weer', 'title', true)
@@ -64,16 +75,7 @@ const details = async (frabl, librarian) => {
                 && parsedData.aquabrowser.results.result
                 || []
 
-            results.map(async result  => {
-                const { frabl } = result
-                const { $t: frablId } = frabl || {}
-
-                const detailsData = await details(frablId, true)
-
-                if (detailsData) {
-                    console.log(JSON.parse(detailsData))
-                }
-            })
+            results.map(getDetailsForResult)
         }
     } catch (error) {
         console.error(error)
