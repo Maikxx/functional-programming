@@ -18,37 +18,65 @@ class OBA {
         const baseUrl = 'http://obaliquid.staging.aquabrowser.nl/api/v1/'
         const path = endpoint + '/'
 
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             const sortedQuery = queryString.stringify(params)
 
-            axios.get(baseUrl + path + '/?authorization=' + this.publicKey + '&' + sortedQuery)
-                .then(res => res.data)
-                .then(xml => parser.toJson(xml))
-                .then(res => resolve(res))
-                .catch(err => reject(err))
+            try {
+                const res = await axios.get(baseUrl + path + '/?authorization=' + this.publicKey + '&' + sortedQuery)
+                const data = await res && res.data
+                const xml = await parser.toJson(data)
+                resolve(xml)
+            } catch (error) {
+                reject(error)
+            }
         })
     }
 }
 
-// Setup authentication to api server
 const client = new OBA({
     public: process.env.publicKey,
     secret: process.env.secretKey,
 })
 
-// General usage:
-// client.get({ENDPOINT}, {PARAMS});
-// ENDPOINT = search | details | refine | schema | availability | holdings
-// PARAMS = API url parameter options (see api docs for more info)
+const search = async (query, sortDir, librarian) => {
+    return await client.get('search', {
+        q: query,
+        sort: sortDir,
+        librarian,
+    })
+}
 
-// Client returns a promise which resolves the APIs output in JSON
+const details = async (id, librarian) => {
+    return await client.get('details', {
+        id,
+        librarian,
+    })
+}
 
-client.get('details', {
-  q: 'held',
-  sort: 'title'
-})
-  .then(res => {
-      console.log(res)
-      fs.writeFile('data.json', res)
-  })
-  .catch(err => {throw new Error(err)})
+const startup = async () => {
+    try {
+        const searchData = await search('held', 'title', true)
+
+        if (searchData) {
+            console.log(searchData)
+            fs.writeFile('search.json', searchData)
+        }
+    } catch (error) {
+        console.error(error)
+        fs.writeFile('search.error.json', error)
+    }
+
+    try {
+        const detailsData = await details('128970', true)
+
+        if (detailsData) {
+            console.log(detailsData)
+            fs.writeFile('details.json', detailsData)
+        }
+    } catch (error) {
+        console.error(error)
+        fs.writeFile('details.error.json', error)
+    }
+}
+
+startup()

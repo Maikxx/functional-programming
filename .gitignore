@@ -1,5 +1,11 @@
+# Development
 node_modules/
+dist/
 nodemon.json
-dist
 .env
-data.json
+
+# Data files
+details.json
+details.error.json
+search.json
+search.error.json
