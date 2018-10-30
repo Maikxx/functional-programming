@@ -53,6 +53,12 @@ const details = async (frabl, librarian) => {
     })
 }
 
+const availability = async (frabl) => {
+    return await client.get('availability', {
+        frabl,
+    })
+}
+
 const getDetailsForResult = async result => {
     const { frabl } = result
     const { $t: frablId } = frabl || {}
@@ -60,7 +66,18 @@ const getDetailsForResult = async result => {
     const detailsData = await details(frablId, true)
 
     if (detailsData) {
-        console.log(JSON.parse(detailsData))
+        console.log('Details', JSON.parse(detailsData))
+    }
+}
+
+const getAvailabilityForResult = async result => {
+    const { frabl } = result
+    const { $t: frablId } = frabl || {}
+
+    const availabilityData = await availability(frablId)
+
+    if (availabilityData) {
+        console.log('Availability', JSON.parse(availabilityData))
     }
 }
 
@@ -75,7 +92,10 @@ const getDetailsForResult = async result => {
                 && parsedData.aquabrowser.results.result
                 || []
 
-            results.map(getDetailsForResult)
+            results.map(result => {
+                getDetailsForResult(result)
+                getAvailabilityForResult(result)
+            })
         }
     } catch (error) {
         console.error(error)
