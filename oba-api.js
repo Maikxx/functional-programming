@@ -22,28 +22,26 @@ module.exports = class api {
     }
 
     get(endpoint, params = '', keySearch = '') {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             let combineUrl = this.getUrl(endpoint, params)
-            axios.get(combineUrl)
-            .then(response => {
-                console.log(chalk.cyan(combineUrl))
 
-                return convert.xmlDataToJSON(response.data)
-            })
-            .then (response => {
-                return keySearch ? jp.query(response, `$..${keySearch}`) : response
-            })
-            .then(response => {
+            try {
+                const response = await axios.get(combineUrl)
+                console.log(chalk.cyan(combineUrl))
+                const json = await convert.xmlDataToJSON(response.data)
+                const data = await keySearch
+                    ? jp.query(json, `$..${keySearch}`)
+                    : json
+
                 return resolve({
-                    data: response,
+                    data,
                     url: combineUrl
                 })
-            })
-            .catch(err => {
-                console.log(chalk.red(combineUrl));
-                console.error(chalk.red(err));
-                return reject(err)
-            })
+            } catch (error) {
+                console.log(chalk.red(combineUrl))
+                console.error(chalk.red(error))
+                return reject(error)
+            }
         })
     }
 }
