@@ -1,4 +1,4 @@
-// Shout out naar folkert voor deze
+// THanks Folkert-Jan
 const axios = require('axios')
 const convert = require('xml-to-json-promise')
 const jp = require('jsonpath')

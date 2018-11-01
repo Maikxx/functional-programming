@@ -73,3 +73,10 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
 9. How does the amount of English speaking expats in Amsterdam correlate with the the amount of English books published?
     * How much English speaking expats are there in Amsterdam per year?
     * How has the amount of English books at the OBA changed in the past _x_ years?
+
+## Honourable mentions
+
+* [Folkert-Jan](https://github.com/FJvdPol).
+    Folkert-Jan created the boilerplate for communicating with the OBA api.
+* [Daniël](https://github.com/DanielvandeVelde).
+    Daniël helped me a lot by having a great readme, which explained pretty much the whole OBA api in an easy way.
