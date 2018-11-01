@@ -4,102 +4,83 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const fs = require('fs')
-const queryString = require('query-string')
-const parser = require('xml2json')
-const axios = require('axios')
+const api = require('./oba-api.js')
+const express = require('express')
+const app = express()
+const port = 3000
 
-class OBA {
-    constructor(options) {
-        this.publicKey = options.public
-        this.secretKey = options.secret
-    }
-
-    get(endpoint, params) {
-        const baseUrl = 'http://obaliquid.staging.aquabrowser.nl/api/v1/'
-        const path = endpoint + '/'
-
-        return new Promise(async (resolve, reject) => {
-            const sortedQuery = queryString.stringify(params)
-
-            try {
-                const res = await axios.get(baseUrl + path + '/?authorization=' + this.publicKey + '&' + sortedQuery)
-                const data = await res && res.data
-                const xml = await parser.toJson(data)
-                resolve(xml)
-            } catch (error) {
-                reject(error)
-            }
-        })
-    }
-}
-
-const client = new OBA({
-    public: process.env.publicKey,
-    secret: process.env.secretKey,
+const client = new api({
+    url: 'https://zoeken.oba.nl/api/v1/',
+    key: process.env.PUBLIC
 })
 
-const search = async (query, sortDir, librarian) => {
+const search = async (query) => {
     return await client.get('search', {
         q: query,
-        sort: sortDir,
-        librarian,
-    })
+        librarian: true,
+        refine: true,
+        facet: 'type(book)&facet=language(dut)'
+    }, 'title')
 }
 
-const details = async (frabl, librarian) => {
-    return await client.get('details', {
-        frabl,
-        librarian,
-    })
-}
+// const details = async (frabl, librarian) => {
+//     return await client.get('details', {
+//         frabl,
+//         librarian,
+//     })
+// }
 
-const availability = async (frabl) => {
-    return await client.get('availability', {
-        frabl,
-    })
-}
+// const availability = async (frabl) => {
+//     return await client.get('availability', {
+//         frabl,
+//     })
+// }
 
-const getDetailsForResult = async result => {
-    const { frabl } = result
-    const { $t: frablId } = frabl || {}
+// const getDetailsForResult = async result => {
+//     const { frabl } = result
+//     const { $t: frablId } = frabl || {}
 
-    const detailsData = await details(frablId, true)
+//     const detailsData = await details(frablId, true)
 
-    if (detailsData) {
-        console.log('Details', JSON.parse(detailsData))
-    }
-}
+//     if (detailsData) {
+//         return JSON.parse(detailsData)
+//     }
+// }
 
-const getAvailabilityForResult = async result => {
-    const { frabl } = result
-    const { $t: frablId } = frabl || {}
+// const getAvailabilityForResult = async result => {
+//     const { frabl } = result
+//     const { $t: frablId } = frabl || {}
 
-    const availabilityData = await availability(frablId)
+//     const availabilityData = await availability(frablId)
 
-    if (availabilityData) {
-        const parsedData = await JSON.parse(availabilityData)
-        const meta = parsedData.aquabrowser && parsedData.aquabrowser.meta
-        const records = meta && meta.records
+//     if (availabilityData) {
+//         const parsedData = await JSON.parse(availabilityData)
+//         const meta = parsedData.aquabrowser && parsedData.aquabrowser.meta
+//         const records = meta && meta.records
 
-        console.log('Availability Records', records)
-    }
-}
+//         return records
+//     }
+// }
 
 (async () => {
     try {
-        const searchData = await search('weer', 'title', true)
+        const searchData = await search('pony')
 
         if (searchData) {
-            const parsedData = await JSON.parse(searchData)
-            const results = parsedData.aquabrowser
-                && parsedData.aquabrowser.results
-                && parsedData.aquabrowser.results.result
-                || []
+            console.log(searchData.data.length)
+            // const results = searchData.aquabrowser
+            //     && searchData.aquabrowser.results
+            //     && searchData.aquabrowser.results.result
+            //     || []
 
-            results.map(result => {
-                getDetailsForResult(result)
-                getAvailabilityForResult(result)
-            })
+            app.get('/', (req, res) => res.json(searchData))
+            app.listen(port, () => console.log('Available'))
+
+            // results.map(async result => {
+            //     const detailsForResult = await getDetailsForResult(result)
+
+            //     // const availabilityForResult = getAvailabilityForResult(result)
+            // })
         }
     } catch (error) {
         console.error(error)
