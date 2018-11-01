@@ -4,12 +4,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const fs = require('fs')
-const api = require('./oba-api.js')
+const API = require('./oba-api.js')
 const express = require('express')
 const app = express()
 const port = 3000
 
-const client = new api({
+const client = new API({
     url: 'https://zoeken.oba.nl/api/v1/',
     key: process.env.PUBLIC
 })

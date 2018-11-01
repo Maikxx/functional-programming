@@ -4,7 +4,7 @@ const convert = require('xml-to-json-promise')
 const jp = require('jsonpath')
 const chalk = require('chalk')
 
-module.exports = class api {
+module.exports = class API {
     constructor(options) {
         this.url = options.url,
         this.key = options.key
@@ -13,11 +13,15 @@ module.exports = class api {
     stringify(object) {
         const keys = Object.keys(object)
         const values = Object.values(object)
+
         return keys.map((key, i) => `&${key}=${values[i]}`).join('')
       }
 
     getUrl(endpoint, params) {
-        let checkForParams = params ? this.stringify(params) : params
+        let checkForParams = params
+            ? this.stringify(params)
+            : params
+
         return this.url + endpoint + '/?authorization=' + this.key + checkForParams
     }
 
@@ -28,6 +32,7 @@ module.exports = class api {
             try {
                 const response = await axios.get(combineUrl)
                 console.log(chalk.cyan(combineUrl))
+
                 const json = await convert.xmlDataToJSON(response.data)
                 const data = await keySearch
                     ? jp.query(json, `$..${keySearch}`)
@@ -40,6 +45,7 @@ module.exports = class api {
             } catch (error) {
                 console.log(chalk.red(combineUrl))
                 console.error(chalk.red(error))
+
                 return reject(error)
             }
         })
