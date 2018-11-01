@@ -1,6 +1,6 @@
 # Functional Programming
 
-## Proces
+## Process
 
 ### Week 1
 
@@ -18,12 +18,12 @@ The rest of the time we tried to get the API to work with JavaScript ([Node](htt
 Today I started thinking of questions, which I could answer by looking at the data I could gather.
 I have thought of the following questions:
 
-1. How has the amount of different book genres published, in the past _x_ years, changed?
-2. How has the amount of books that are rented out changed in the past _x_ years?
-3. How has the amount of (cover) images on books changed in the past _x_ years?
+1. How has the amount of different book genres published, in the past 5 years, changed?
+2. How has the amount of books that are rented out changed in the past 5 years?
+3. How has the amount of (cover) images on books changed in the past 5 years?
 4. What is the relationship between title and description length of books?
-5. How has the division between Dutch and English books at the OBA changed in the past _x_ years?
-6. How has the average age of authors changed in the children-book genre in the past _x_ years?
+5. How has the division between Dutch and English books at the OBA changed in the past 5 years?
+6. How has the average age of authors changed in the children-book genre in the past 5 years?
 7. How does the amount of published books per year correlate with the amount of cover images in books?
 8. How does the amount of published books per year correlate with average title and description length in books?
 9. How does the amount of English speaking expats in Amsterdam correlate with the the amount of English books published?
@@ -32,18 +32,18 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
 
 #### Day 3
 
-1. How has the amount of different book genres published, in the past _x_ years, changed?
+1. How has the amount of different book genres published, in the past 5 years, changed?
     * What major book genres were published?
     * What major book genres became more popular?
     * What major book genres became less popular?
     * What are monumental increases and decreases?
     * How could these increases and decreases best be explained?
-2. How has the amount of books that are rented out changed in the past _x_ years?
+2. How has the amount of books that are rented out changed in the past 5 years?
     * How much books were rented out per year from the OBA?
     * How does this growth or decline in rented books compare to state in which books are in?
     * What are monumental increases and decreases?
     * How could these increases and decreases best be explained?
-3. How has the amount of (cover) images on books changed in the past _x_ years?
+3. How has the amount of (cover) images on books changed in the past 5 years?
     * What is the average amount of cover images on books in a given year?
     * What are monumental increases and decreases?
     * How could these increases and decreases best be explained?
@@ -53,26 +53,47 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
     * How do these two variables relate?
     * What are monumental increases and decreases in title and / or description length?
     * How could these increases and decreases best be explained?
-5. How has the division between Dutch and English books at the OBA changed in the past _x_ years?
+5. How has the division between Dutch and English study-books at the OBA changed in the past 5 years?
     * What is the amount of books in a given language per year?
     * Has this division increased or decreased?
     * What are monumental increases and decreases?
     * How could these increases and decreases best be explained?
-6. How has the average age of authors in the children-book genre changed in the past _x_ years?
+    * _If available_: Does the increase or decrease have something to do with the increased amount of English   speaking people in Amsterdam?
+    * Is this increase or decrease truthy for all books, not just for study-books?
+6. How has the average age of authors in the children-book genre changed in the past 5 years?
     * What is the average age of authors of books in the children-book genre?
     * What are monumental increases and decreases?
     * How could these increases and decreases best be explained?
 7. How does the amount of published books per year correlate with the amount of cover images in books?
-    * How has the amount of cover images in books changed in the past _x_ years?
-    * How has the amount of published books changed in the past _x_ years?
+    * How has the amount of cover images in books changed in the past 5 years?
+    * How has the amount of published books changed in the past 5 years?
     * Is there an influence of the amount of cover images on books and the amount of books that are published?
 8. How does the amount of published books per year correlate with average title and description length in books?
-    * How has the length of titles and descriptions changed in the past _x_ years?
-    * How has the amount of published books changed in the past _x_ years?
+    * How has the length of titles and descriptions changed in the past 5 years?
+    * How has the amount of published books changed in the past 5 years?
     * Is there an influence of the title/description length  onbooks and the amount of books that are published?
 9. How does the amount of English speaking expats in Amsterdam correlate with the the amount of English books published?
     * How much English speaking expats are there in Amsterdam per year?
-    * How has the amount of English books at the OBA changed in the past _x_ years?
+    * How has the amount of English books at the OBA changed in the past 5 years?
+
+### Day 4
+
+**Research question**
+* How has the division between Dutch and English study-books at the OBA changed in the past 5 years?
+
+**Research sub-questions**
+* What is the amount of books in a given language per year?
+* Has this division increased or decreased?
+* What years have monumental increases and decreases?
+* How could these increases and decreases best be explained?
+* _If available_: Does the increase or decrease have something to do with the increased amount of English speaking people in Amsterdam?
+* Is this increase or decrease truthy for all books, not just for study-books?
+
+**Variables required**
+* Language of a book
+* Date of publication
+* Genre of a book
+* _If available_: nationality of the renter
 
 ## Honourable mentions
 
