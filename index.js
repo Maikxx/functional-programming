@@ -14,13 +14,21 @@ const client = new API({
     key: process.env.PUBLIC
 })
 
-const search = async (query) => {
+
+/**
+ * Function that searches the OBA api with the help of a query search string and a facet
+ * Librarian and refine are both set to true.
+ *
+ * @param {string} query
+ * @param {string} facet
+ */
+const search = async (query, facet) => {
     return await client.get('search', {
         q: query,
         librarian: true,
         refine: true,
-        facet: 'type(book)&facet=language(dut)'
-    }, 'title')
+        facet,
+    })
 }
 
 // const details = async (frabl, librarian) => {
@@ -64,7 +72,7 @@ const search = async (query) => {
 
 (async () => {
     try {
-        const searchData = await search('pony')
+        const searchData = await search('pony', 'type(book)&facet=language(dut)')
 
         if (searchData) {
             console.log(searchData.data.length)
