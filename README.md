@@ -76,7 +76,7 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
     * How much English speaking expats are there in Amsterdam per year?
     * How has the amount of English books at the OBA changed in the past 5 years?
 
-### Day 4
+#### Day 4
 
 **Research question**
 * How has the division between Dutch and English study-books at the OBA changed in the past 5 years?
@@ -94,6 +94,16 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
 * Date of publication
 * Genre of a book
 * _If available_: nationality of the renter
+
+#### Day 5
+
+##### TODO
+
+* Create a way to loop a the search request to get more than 20 results.
+* Check if all needed variables are working as expected.
+* Change the topic to test.
+* Change the language to eng.
+* Store all the data (English and Dutch books) in an array.
 
 ## Honourable mentions
 
