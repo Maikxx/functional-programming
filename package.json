@@ -5,7 +5,7 @@
   "main": "index.js",
   "author": "Maikel van Veen <maikeloo10@hotmail.com>",
   "scripts": {
-    "serve": "nodemon --watch index.js"
+    "serve": "nodemon --watch index.js --watch api"
   },
   "license": "MIT",
   "private": true,

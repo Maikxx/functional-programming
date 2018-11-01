@@ -4,11 +4,17 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const fs = require('fs')
-const API = require('./oba-api.js')
+const API = require('./api/oba-api.js')
+
+// Server
 const express = require('express')
 const app = express()
 const port = 3000
 
+// Getters
+const getters = require('./api/getters.js')
+
+// API
 const client = new API({
     url: 'https://zoeken.oba.nl/api/v1/',
     key: process.env.PUBLIC
@@ -16,12 +22,12 @@ const client = new API({
 
 
 /**
- * Function that searches the OBA api with the help of a query search string and a facet
- * Librarian and refine are both set to true.
- *
- * @param {string} query
- * @param {string} facet
- */
+* Function that searches the OBA api with the help of a query search string and a facet
+* Librarian and refine are both set to true.
+*
+* @param {string} query
+* @param {string} facet
+*/
 const search = async (query, facet) => {
     return await client.get('search', {
         q: query,
@@ -72,23 +78,22 @@ const search = async (query, facet) => {
 
 (async () => {
     try {
-        const searchData = await search('pony', 'type(book)&facet=language(dut)')
+        const { data: searchData } = await search('pony', 'type(book)&facet=language(dut)')
 
         if (searchData) {
-            console.log(searchData.data.length)
-            // const results = searchData.aquabrowser
-            //     && searchData.aquabrowser.results
-            //     && searchData.aquabrowser.results.result
-            //     || []
+            const meta = getters.getMetaFromSearchData(searchData)
+            const totalAmountOfResults = getters.getTotalAmountOfResultsFromMeta(meta)
+            const currentPage = getters.getCurrentPageFromMeta(meta)
+            const results = getters.getResultsFromSearchData(searchData)
+            const transformedResults = getters.getTransformedResultsFromResults(results)
+
+            // console.log('currentPage:', currentPage)
+            // console.log('totalAmountOfResults:', totalAmountOfResults)
+            // console.log('results:', results)
+            console.log('transformedResults:', transformedResults)
 
             app.get('/', (req, res) => res.json(searchData))
-            app.listen(port, () => console.log('Available'))
-
-            // results.map(async result => {
-            //     const detailsForResult = await getDetailsForResult(result)
-
-            //     // const availabilityForResult = getAvailabilityForResult(result)
-            // })
+            app.listen(port, () => console.log(`\nAvailable on: localhost:${port}`))
         }
     } catch (error) {
         console.error(error)
