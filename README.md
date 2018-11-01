@@ -104,6 +104,7 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
 * Change the topic to test.
 * Change the language to eng.
 * Store all the data (English and Dutch books) in an array.
+* Split getters into multiple files by topic.
 
 ## Honourable mentions
 
