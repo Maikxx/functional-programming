@@ -108,7 +108,6 @@ The amount of English books has increased in the past five years, due to the gro
 * Change the topic to test.
 * Change the language to eng.
 * Store all the data (English and Dutch books) in an array.
-* Split getters into multiple files by topic.
 
 ## Honourable mentions
 
