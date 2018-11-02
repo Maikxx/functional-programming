@@ -97,6 +97,10 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
 
 #### Day 5
 
+**Hypothese**
+
+The amount of English books has increased in the past five years, due to the growing number of internalization in Amsterdam.
+
 ##### TODO
 
 * Create a way to loop a the search request to get more than 20 results.
