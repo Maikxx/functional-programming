@@ -6,8 +6,7 @@
 */
 const getFrablIdFromResult = result => {
     return result.frabl
-        && result.frabl[0]
-        && result.frabl[0]._
+        && result.frabl.$t
         || undefined
 }
 
@@ -19,10 +18,8 @@ const getFrablIdFromResult = result => {
 */
 const getRegularTitleFromResult = result => {
     return result.titles
-        && result.titles[0]
-        && result.titles[0].title
-        && result.titles[0].title[0]
-        && result.titles[0].title[0]._
+        && result.titles.title
+        && result.titles.title.$t
         || undefined
 }
 
@@ -34,10 +31,8 @@ const getRegularTitleFromResult = result => {
 */
 const getShortTitleFromResult = result => {
     return result.titles
-        && result.titles[0]
-        && result.titles[0][`short-title`]
-        && result.titles[0][`short-title`][0]
-        && result.titles[0][`short-title`][0]._
+        && result.titles[`short-title`]
+        && result.titles[`short-title`].$t
         || undefined
 }
 
@@ -49,11 +44,9 @@ const getShortTitleFromResult = result => {
 */
 const getYearOfPublicationFromResult = result => {
     return result.publication
-        && result.publication[0]
-        && result.publication[0].year
-        && result.publication[0].year[0]
-        && result.publication[0].year[0]._
-        && Number(result.publication[0].year[0]._)
+        && result.publication.year
+        && result.publication.year.$t
+        && Number(result.publication.year.$t)
         || undefined
 }
 
@@ -63,15 +56,12 @@ const getYearOfPublicationFromResult = result => {
 * @param {object} result
 * @returns {Array} Array of languages.
 */
-const getLanguagesFromResult = result => {
+const getLanguageFromResult = result => {
     console.log(result)
     return result.languages
-        && result.languages.map(resultLanguage => (
-            resultLanguage.language
-                && resultLanguage.language[0]
-                && resultLanguage.language[0]._
-                || undefined
-        ))
+        && result.languages.language
+        && result.languages.language.$t
+        || undefined
 }
 
 /**
@@ -82,12 +72,9 @@ const getLanguagesFromResult = result => {
 */
 const getGenresFromResult = result => {
     return result.genres
-        && result.genres.map(resultGenre => (
-            resultGenre.genre
-                && resultGenre.genre[0]
-                && resultGenre.genre[0]._
-                || undefined
-        ))
+        && result.genres.genre
+        && result.genres.genre.$t
+        || undefined
 }
 
 /**
@@ -105,7 +92,7 @@ const getTransformedResultsFromResults = results => {
                 short: getShortTitleFromResult(result),
             },
             yearOfPublication: getYearOfPublicationFromResult(result),
-            languages: getLanguagesFromResult(result),
+            languages: getLanguageFromResult(result),
             genres: getGenresFromResult(result),
         }
     })
