@@ -101,14 +101,6 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
 
 The amount of English books has increased in the past five years, due to the growing number of internalization in Amsterdam.
 
-##### TODO
-
-* Create a way to loop a the search request to get more than 20 results.
-* Check if all needed variables are working as expected.
-* Change the topic to test.
-* Change the language to eng.
-* Store all the data (English and Dutch books) in an array.
-
 ## Honourable mentions
 
 * [Folkert-Jan](https://github.com/FJvdPol).
