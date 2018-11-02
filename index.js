@@ -37,45 +37,6 @@ const search = async (query, facet) => {
     })
 }
 
-// const details = async (frabl, librarian) => {
-//     return await client.get('details', {
-//         frabl,
-//         librarian,
-//     })
-// }
-
-// const availability = async (frabl) => {
-//     return await client.get('availability', {
-//         frabl,
-//     })
-// }
-
-// const getDetailsForResult = async result => {
-//     const { frabl } = result
-//     const { $t: frablId } = frabl || {}
-
-//     const detailsData = await details(frablId, true)
-
-//     if (detailsData) {
-//         return JSON.parse(detailsData)
-//     }
-// }
-
-// const getAvailabilityForResult = async result => {
-//     const { frabl } = result
-//     const { $t: frablId } = frabl || {}
-
-//     const availabilityData = await availability(frablId)
-
-//     if (availabilityData) {
-//         const parsedData = await JSON.parse(availabilityData)
-//         const meta = parsedData.aquabrowser && parsedData.aquabrowser.meta
-//         const records = meta && meta.records
-
-//         return records
-//     }
-// }
-
 (async () => {
     try {
         const { data: searchData } = await search('pony', 'type(book)&facet=language(dut)')
