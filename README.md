@@ -115,3 +115,5 @@ The amount of English books has increased in the past five years, due to the gro
     Folkert-Jan created the boilerplate for communicating with the OBA api.
 * [Daniël](https://github.com/DanielvandeVelde).
     Daniël helped me a lot by having a great readme, which explained pretty much the whole OBA api in an easy way.
+* [Wouter](https://github.com/maanlamp).
+    Wouter created the boilerplate for pagination with the OBA api.
