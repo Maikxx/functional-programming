@@ -44,14 +44,14 @@ const search = async (query, facet) => {
     }
 
     try {
-        const results = await search('james bond', ['type(book)', 'language(dut)'])
+        const results = await search('james bond', ['type(book)'])
 
         if (results) {
             const transformedResults = getters.getTransformedResultsFromResults(results)
+            const englishAndDutchBooks = getters.getEnglishAndDutchBooks(transformedResults)
+            const sortedEnglishAndDutchBooks = getters.getSortedEnglishAndDutchBooks(englishAndDutchBooks)
 
-            console.log(transformedResults)
-
-            app.get('/', (req, res) => res.json(results))
+            app.get('/', (req, res) => res.json(sortedEnglishAndDutchBooks))
             app.listen(port, () => console.log(`\nAvailable on: localhost:${port}`))
         }
     } catch (error) {

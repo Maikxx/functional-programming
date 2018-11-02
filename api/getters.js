@@ -57,7 +57,6 @@ const getYearOfPublicationFromResult = result => {
 * @returns {Array} Array of languages.
 */
 const getLanguageFromResult = result => {
-    console.log(result)
     return result.languages
         && result.languages.language
         && result.languages.language.$t
@@ -65,12 +64,12 @@ const getLanguageFromResult = result => {
 }
 
 /**
-* Function that searches the result object for the genres and transforms it to an array of strings.
+* Function that searches the result object for the genre and transforms it to an array of strings.
 *
 * @param {object} result
 * @returns {Array} Array of genres.
 */
-const getGenresFromResult = result => {
+const getGenreFromResult = result => {
     return result.genres
         && result.genres.genre
         && result.genres.genre.$t
@@ -84,20 +83,49 @@ const getGenresFromResult = result => {
 * @returns {Array} Array of transformed results or an empty array.
 */
 const getTransformedResultsFromResults = results => {
-    return results && results.map(result => {
-        return {
-            frablId: getFrablIdFromResult(result),
-            titleCollection: {
-                regular: getRegularTitleFromResult(result),
-                short: getShortTitleFromResult(result),
-            },
-            yearOfPublication: getYearOfPublicationFromResult(result),
-            languages: getLanguageFromResult(result),
-            genres: getGenresFromResult(result),
+    return results && results.map(result => ({
+        frablId: getFrablIdFromResult(result),
+        titleCollection: {
+            regular: getRegularTitleFromResult(result),
+            short: getShortTitleFromResult(result),
+        },
+        yearOfPublication: getYearOfPublicationFromResult(result),
+        language: getLanguageFromResult(result),
+        genre: getGenreFromResult(result),
+    }))
+}
+
+/**
+* Function that loops through the transformed results and gives back the English and Dutch books.
+*
+* @param {object} transformedResults
+* @returns {Array} Array of transformed results which have the language Dutch or English.
+*/
+const getEnglishAndDutchBooks = transformedResults => {
+    const languageKeys = ['eng', 'dut']
+
+    return transformedResults
+        ? transformedResults.filter(transformedResult => languageKeys.includes(transformedResult.language))
+        : []
+}
+
+/**
+* Function that loops through the transformed results and gives back the English and Dutch books.
+*
+* @param {object} englishAndDutchBooks
+* @returns {object} Object which contains two key value pairs (Dutch and English books, which are arrays)
+*/
+const getSortedEnglishAndDutchBooks = englishAndDutchBooks => {
+    return englishAndDutchBooks
+        ? {
+            'dut': englishAndDutchBooks.filter(book => book.language === 'dut'),
+            'eng': englishAndDutchBooks.filter(book => book.language === 'eng'),
         }
-    })
+        : {}
 }
 
 module.exports = {
     getTransformedResultsFromResults,
+    getEnglishAndDutchBooks,
+    getSortedEnglishAndDutchBooks,
 }
