@@ -1,58 +1,4 @@
 /**
-* Function that searches the data given by the OBA api and returns the meta information about the query.
-*
-* @param {object} searchData
-* @returns {object} Object containing meta information.
-*/
-const getMetaFromSearchData = searchData => {
-    return searchData.aquabrowser && searchData.aquabrowser.meta
-}
-
-/**
-* Function that searches the data given by the OBA api and returns the total amount of results found by the query.
-*
-* @param {object} meta
-* @returns {number} Number of the total amount of books.
-*/
-const getTotalAmountOfResultsFromMeta = meta => {
-    return meta
-        ? meta[0]
-            && meta[0].count
-            && meta[0].count[0]
-            && Number(meta[0].count[0])
-        : undefined
-}
-
-/**
-* Function that searches the meta data given by the getMetaFromSearchData function and looks for the page number.
-*
-* @param {object} meta
-* @returns {number} Number of the page.
-*/
-const getCurrentPageFromMeta = meta => {
-    return meta
-        ? meta[0]
-            && meta[0].page
-            && meta[0].page[0]
-            && Number(meta[0].page[0])
-        : undefined
-}
-
-/**
-* Function that searches searchData from the OBA api for the results.
-*
-* @param {object} searchData
-* @returns {Array} Array of results or an empty array.
-*/
-const getResultsFromSearchData = searchData => {
-    return searchData.aquabrowser
-        && searchData.aquabrowser.results
-        && searchData.aquabrowser.results[0]
-        && searchData.aquabrowser.results[0].result
-        || []
-}
-
-/**
 * Function that searches the result object for the frabl id, which can be used to query a detail page.
 *
 * @param {object} result
@@ -118,6 +64,7 @@ const getYearOfPublicationFromResult = result => {
 * @returns {Array} Array of languages.
 */
 const getLanguagesFromResult = result => {
+    console.log(result)
     return result.languages
         && result.languages.map(resultLanguage => (
             resultLanguage.language
@@ -165,9 +112,5 @@ const getTransformedResultsFromResults = results => {
 }
 
 module.exports = {
-    getMetaFromSearchData,
-    getTotalAmountOfResultsFromMeta,
-    getCurrentPageFromMeta,
-    getResultsFromSearchData,
     getTransformedResultsFromResults,
 }

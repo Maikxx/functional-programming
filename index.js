@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const fs = require('fs')
-const API = require('./api/oba-api.js')
+const API = require('./api/oba-wrapper.js')
 
 // Server
 const express = require('express')
@@ -16,10 +16,9 @@ const getters = require('./api/getters.js')
 
 // API
 const client = new API({
-    url: 'https://zoeken.oba.nl/api/v1/',
-    key: process.env.PUBLIC
+    public: process.env.PUBLIC,
+    secret: process.env.SECRET,
 })
-
 
 /**
 * Function that searches the OBA api with the help of a query search string and a facet
@@ -34,23 +33,25 @@ const search = async (query, facet) => {
         librarian: true,
         refine: true,
         facet,
+        count: 29,
     })
 }
 
 (async () => {
-    try {
-        const { data: searchData } = await search('pony', 'type(book)&facet=language(dut)')
+    const books = {
+        "dut": [],
+        "eng": [],
+    }
 
-        if (searchData) {
-            const meta = getters.getMetaFromSearchData(searchData)
-            const totalAmountOfResults = getters.getTotalAmountOfResultsFromMeta(meta)
-            const currentPage = getters.getCurrentPageFromMeta(meta)
-            const results = getters.getResultsFromSearchData(searchData)
+    try {
+        const results = await search('james bond', ['type(book)', 'language(dut)'])
+
+        if (results) {
             const transformedResults = getters.getTransformedResultsFromResults(results)
 
-            console.log('transformedResults:', transformedResults)
+            console.log(transformedResults)
 
-            app.get('/', (req, res) => res.json(searchData))
+            app.get('/', (req, res) => res.json(results))
             app.listen(port, () => console.log(`\nAvailable on: localhost:${port}`))
         }
     } catch (error) {
