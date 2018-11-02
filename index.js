@@ -48,9 +48,6 @@ const search = async (query, facet) => {
             const results = getters.getResultsFromSearchData(searchData)
             const transformedResults = getters.getTransformedResultsFromResults(results)
 
-            // console.log('currentPage:', currentPage)
-            // console.log('totalAmountOfResults:', totalAmountOfResults)
-            // console.log('results:', results)
             console.log('transformedResults:', transformedResults)
 
             app.get('/', (req, res) => res.json(searchData))
