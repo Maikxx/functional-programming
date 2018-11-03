@@ -102,6 +102,7 @@ As for the rest of the day I mainly focussed on getting the _details_ and _avail
 The amount of English books has increased in the past five years, due to the growing number of internalization in Amsterdam.
 
 As for the rest of this day, I mainly helped [Chelsea Doeleman](https://github.com/chelseadoeleman), [Linda de Haan](https://github.com/LindadeHaan) and [Jessie Mason](https://github.com/jessiemasonx) getting their data structure up and running.
+I also managed to get the pagination working.
 
 ## Honourable mentions
 
