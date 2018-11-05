@@ -106,6 +106,12 @@ I also managed to get the pagination working.
 
 I finally got the information that the nationality of the renter is not available at this very moment, unfortunately.
 
+### Week 2
+
+#### Day 1
+
+I originally planned to make a stacked area chart with the data that I had gathered, however after seeing the insane syntax and more complex data structure, I went for the simple stacked bar chart.
+
 ## Honourable mentions
 
 * [Folkert-Jan](https://github.com/FJvdPol).
