@@ -52,6 +52,7 @@ const search = async (query, facet) => {
         if (sortedEnglishAndDutchBooks) {
             app.get('/', (req, res) => res.json(sortedEnglishAndDutchBooks))
             app.listen(port, () => console.log(`\nAvailable on: localhost:${port}`))
+            fs.writeFile('data.json', JSON.stringify(sortedEnglishAndDutchBooks))
         }
     } catch (error) {
         console.error(error)

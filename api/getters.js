@@ -116,8 +116,8 @@ const getBooksByLanguageFromTransformedResults = (transformedResults, language) 
 const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) => {
     return (dutchBooks && englishBooks)
         ? {
-            'dut': dutchBooks,
-            'eng': englishBooks,
+            "dut": dutchBooks,
+            "eng": englishBooks,
         }
         : {}
 }
