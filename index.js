@@ -33,19 +33,23 @@ const search = async (query, facet) => {
         librarian: true,
         refine: true,
         facet,
-        count: 29,
+        count: 200,
     })
 }
 
 (async () => {
     try {
-        const results = await search('james bond', ['type(book)'])
+        const dutchResults = await search('language:dut', ['type(book)'])
+        const transformedDutchResults = dutchResults && getters.getTransformedResultsFromResults(dutchResults)
+        const dutchBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedDutchResults, 'dut')
 
-        if (results) {
-            const transformedResults = getters.getTransformedResultsFromResults(results)
-            const englishAndDutchBooks = getters.getEnglishAndDutchBooks(transformedResults)
-            const sortedEnglishAndDutchBooks = getters.getSortedEnglishAndDutchBooks(englishAndDutchBooks)
+        const englishResults = await search('language:eng', ['type(book)'])
+        const transformedEnglishResults = englishResults && getters.getTransformedResultsFromResults(englishResults)
+        const englishBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedEnglishResults, 'eng')
 
+        const sortedEnglishAndDutchBooks = getters.getSortedEnglishAndDutchBooks(dutchBooks, englishBooks)
+
+        if (sortedEnglishAndDutchBooks) {
             app.get('/', (req, res) => res.json(sortedEnglishAndDutchBooks))
             app.listen(port, () => console.log(`\nAvailable on: localhost:${port}`))
         }

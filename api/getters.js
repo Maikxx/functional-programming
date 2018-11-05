@@ -96,16 +96,14 @@ const getTransformedResultsFromResults = results => {
 }
 
 /**
-* Function that loops through the transformed results and gives back the English and Dutch books.
+* Function that loops through the transformed results and gives back the English or Dutch books.
 *
 * @param {object} transformedResults
 * @returns {Array} Array of transformed results which have the language Dutch or English.
 */
-const getEnglishAndDutchBooks = transformedResults => {
-    const languageKeys = ['eng', 'dut']
-
+const getBooksByLanguageFromTransformedResults = (transformedResults, language) => {
     return transformedResults
-        ? transformedResults.filter(transformedResult => languageKeys.includes(transformedResult.language))
+        ? transformedResults.filter(transformedResult => language === transformedResult.language)
         : []
 }
 
@@ -115,17 +113,17 @@ const getEnglishAndDutchBooks = transformedResults => {
 * @param {object} englishAndDutchBooks
 * @returns {object} Object which contains two key value pairs (Dutch and English books, which are arrays)
 */
-const getSortedEnglishAndDutchBooks = englishAndDutchBooks => {
-    return englishAndDutchBooks
+const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) => {
+    return (dutchBooks && englishBooks)
         ? {
-            'dut': englishAndDutchBooks.filter(book => book.language === 'dut'),
-            'eng': englishAndDutchBooks.filter(book => book.language === 'eng'),
+            'dut': dutchBooks,
+            'eng': englishBooks,
         }
         : {}
 }
 
 module.exports = {
     getTransformedResultsFromResults,
-    getEnglishAndDutchBooks,
+    getBooksByLanguageFromTransformedResults,
     getSortedEnglishAndDutchBooks,
 }
