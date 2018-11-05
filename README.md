@@ -104,6 +104,8 @@ The amount of English books has increased in the past five years, due to the gro
 As for the rest of this day, I mainly helped [Chelsea Doeleman](https://github.com/chelseadoeleman), [Linda de Haan](https://github.com/LindadeHaan) and [Jessie Mason](https://github.com/jessiemasonx) getting their data structure up and running.
 I also managed to get the pagination working.
 
+I finally got the information that the nationality of the renter is not available at this very moment, unfortunately.
+
 ## Honourable mentions
 
 * [Folkert-Jan](https://github.com/FJvdPol).
