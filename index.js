@@ -38,11 +38,6 @@ const search = async (query, facet) => {
 }
 
 (async () => {
-    const books = {
-        "dut": [],
-        "eng": [],
-    }
-
     try {
         const results = await search('james bond', ['type(book)'])
 
