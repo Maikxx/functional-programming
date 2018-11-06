@@ -83,6 +83,12 @@ The amount of English books that are published per year has increased in the pas
 * Flowchart.
 * Multi area chart.
 
+### Sketches
+
+![sketch 1](docs/sketch_1.jpg)
+
+![sketch 2](docs/sketch_2.jpg)
+
 ## Process
 
 ### Day 1
