@@ -1,4 +1,5 @@
 const _range = require('lodash.range')
+const _uniqBy = require('lodash.uniqby')
 
 /**
 * Function that searches the result object for the frabl id, which can be used to query a detail page.
@@ -104,11 +105,15 @@ const getBooksByYear = books => {
     const publicationYears = _range(currentYear - 5, currentYear + 1)
 
     return publicationYears.map(year => ({
-        [year]: books
-            ? books.filter(book => book.yearOfPublication === year)
-            : null
+        [year]: books.filter(book => book.yearOfPublication === year)
     }))
 }
+
+const changeBookToDataPoint = book => ({
+    series: book.language,
+    count: undefined,
+    year: book.yearOfPublication,
+})
 
 /**
 * Function that loops through the transformed results and gives back the English and Dutch books.
@@ -116,16 +121,16 @@ const getBooksByYear = books => {
 * @param {object} englishAndDutchBooks
 * @returns {object} Object which contains two key value pairs (Dutch and English books, which are objects containing years)
 */
-const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) => {
-    return {
-        "dut": getBooksByYear(dutchBooks),
-        "eng": getBooksByYear(englishBooks),
-    }
-}
+const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) =>
+    ([
+        ..._uniqBy(...dutchBooks.map(changeBookToDataPoint), 'year'),
+        ..._uniqBy(...englishBooks.map(changeBookToDataPoint), 'year'),
+    ])
 
 module.exports = {
     getTransformedResultsFromResults,
     getBooksByLanguageFromTransformedResults,
     getSortedEnglishAndDutchBooks,
     getYearOfPublicationFromResult,
+    getBooksByYear,
 }

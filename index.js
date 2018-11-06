@@ -54,6 +54,14 @@ const search = async (query, facet) => {
         const englishBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedEnglishResults, 'eng')
 
         const sortedEnglishAndDutchBooks = getters.getSortedEnglishAndDutchBooks(dutchBooks, englishBooks)
+        const dutchYearBooks = getters.getBooksByYear(dutchBooks)
+        const englishYearKeys = getters.getBooksByYear(englishBooks)
+
+        Object.entries(dutchYearBooks).forEach(([key, value]) => console.log(key, value))
+
+        console.log(sortedEnglishAndDutchBooks)
+
+        // console.log(getters.getBooksForSeries(dutchBooks, englishBooks))
 
         if (sortedEnglishAndDutchBooks) {
             app.get('/', (req, res) => res.json(sortedEnglishAndDutchBooks))
