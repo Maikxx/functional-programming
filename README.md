@@ -110,7 +110,11 @@ I finally got the information that the nationality of the renter is not availabl
 
 #### Day 1
 
-I originally planned to make a stacked area chart with the data that I had gathered, however after seeing the insane syntax and more complex data structure, I went for the simple stacked bar chart.
+I originally planned to make a stacked area chart with the data that I had gathered, however after seeing the insane syntax and more complex data structure, I went for the simple line diagram.
+
+#### Day 2
+
+Today we had some major difficulties with the OBA Api. The api wouldn't give us any data back anymore, which caused us to stop being productive relatively fast.
 
 ## Honourable mentions
 
@@ -119,4 +123,6 @@ I originally planned to make a stacked area chart with the data that I had gathe
 * [Daniël](https://github.com/DanielvandeVelde).
     Daniël helped me a lot by having a great readme, which explained pretty much the whole OBA api in an easy way.
 * [Wouter](https://github.com/maanlamp).
-    Wouter created the boilerplate for pagination with the OBA api.
+    Wouter created the boilerplate for pagination with the OBA Api.
+* [Chelsea Doeleman](https://github.com/chelseadoeleman)
+    Chelsea helped me get over my overly complex thinking in some situations.
