@@ -153,10 +153,10 @@ I deciced to clean up this readme and call it a day.
 ## Honourable mentions
 
 * [Folkert-Jan](https://github.com/FJvdPol):
-    Folkert-Jan created the boilerplate for communicating with the OBA API.
+    Folkert-Jan created the [boilerplate](https://github.com/FJvdPol/functional-programming/blob/master/oba-api.js) for communicating with the OBA API.
 * [Daniël](https://github.com/DanielvandeVelde):
-    Daniël helped me a lot by having a great readme, which explained pretty much the whole OBA API in an easy way.
+    Daniël helped me a lot by having a great [README](https://github.com/DanielvandeVelde/functional-programming/blob/master/README.md), which explained pretty much the whole OBA API in an easy way.
 * [Wouter](https://github.com/maanlamp):
-    Wouter created the boilerplate for pagination with the OBA API.
+    Wouter created the [boilerplate for pagination](https://github.com/maanlamp/node-oba-api-wrapper) with the OBA API.
 * [Chelsea Doeleman](https://github.com/chelseadoeleman):
-    Chelsea helped me get over my overly complex thinking in some situations.
+    Chelsea helped me get over my overly complex thinking and just getting stuff done.
