@@ -114,7 +114,7 @@ const getBooksByYear = (books) => {
 * Function that loops through the transformed results and gives back the English and Dutch books.
 *
 * @param {object} englishAndDutchBooks
-* @returns {object} Object which contains two key value pairs (Dutch and English books, which are arrays)
+* @returns {object} Object which contains two key value pairs (Dutch and English books, which are objects containing years)
 */
 const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) => {
     return {
