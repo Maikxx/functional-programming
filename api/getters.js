@@ -99,7 +99,7 @@ const getBooksByLanguageFromTransformedResults = (transformedResults, language) 
 * @param {Array} books
 * @returns {Object} Object with years as keys and an array of books as value.
 */
-const getBooksByYear = (books) => {
+const getBooksByYear = books => {
     const currentYear = new Date().getFullYear()
     const publicationYears = _range(currentYear - 5, currentYear)
 
