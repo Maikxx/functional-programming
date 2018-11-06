@@ -137,14 +137,12 @@ to:
 
 _"The amount of English books that are published per year has increased in the past five years, while Dutch books are staying around the same amount."_
 
-### Week 2
-
-### Day 1
+### Day 6
 
 I originally planned to make a stacked area chart with the data that I had gathered, however after seeing the insane syntax and more complex data structure, I went for the simple line diagram. Which I had tried to get running in Observable.
 Unfortunately I did not get this running today, because the data structure I wrote needs to change a lot for this to work.
 
-### Day 2
+### Day 7
 
 Today we had some major difficulties with the OBA API.
 The API wouldn't give us any data back anymore, which caused us to stop being productive relatively fast.
