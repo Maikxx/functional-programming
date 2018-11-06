@@ -118,11 +118,11 @@ Today we had some major difficulties with the OBA Api. The api wouldn't give us 
 
 ## Honourable mentions
 
-* [Folkert-Jan](https://github.com/FJvdPol).
+* [Folkert-Jan](https://github.com/FJvdPol):
     Folkert-Jan created the boilerplate for communicating with the OBA api.
-* [Daniël](https://github.com/DanielvandeVelde).
+* [Daniël](https://github.com/DanielvandeVelde):
     Daniël helped me a lot by having a great readme, which explained pretty much the whole OBA api in an easy way.
-* [Wouter](https://github.com/maanlamp).
+* [Wouter](https://github.com/maanlamp):
     Wouter created the boilerplate for pagination with the OBA Api.
-* [Chelsea Doeleman](https://github.com/chelseadoeleman)
+* [Chelsea Doeleman](https://github.com/chelseadoeleman):
     Chelsea helped me get over my overly complex thinking in some situations.
