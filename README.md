@@ -74,6 +74,15 @@
 
 The amount of English books that are published per year has increased in the past five years, while Dutch books are staying around the same amount.
 
+### Possible visualisation types
+
+* Multi line diagram.
+* Stacked area chart.
+* Stacked bar chart.
+* Multi bar chart.
+* Flowchart.
+* Multi area chart.
+
 ## Process
 
 ### Day 1
