@@ -34,6 +34,11 @@ const search = async (query, facet) => {
         refine: true,
         facet,
         count: 200,
+        filter: result => {
+            const publicationYear = getters.getYearOfPublicationFromResult(result)
+
+            return publicationYear >= new Date().getFullYear() - 5
+        }
     })
 }
 

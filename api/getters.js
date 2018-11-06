@@ -11,19 +11,6 @@ const getFrablIdFromResult = result => {
 }
 
 /**
-* Function that searches the result object for the regular title.
-*
-* @param {object} result
-* @returns {string} A string which contains the title of the book.
-*/
-const getRegularTitleFromResult = result => {
-    return result.titles
-        && result.titles.title
-        && result.titles.title.$t
-        || undefined
-}
-
-/**
 * Function that searches the result object for the short title.
 *
 * @param {object} result
@@ -85,10 +72,7 @@ const getGenreFromResult = result => {
 const getTransformedResultsFromResults = results => {
     return results && results.map(result => ({
         frablId: getFrablIdFromResult(result),
-        titleCollection: {
-            regular: getRegularTitleFromResult(result),
-            short: getShortTitleFromResult(result),
-        },
+        title: getShortTitleFromResult(result),
         yearOfPublication: getYearOfPublicationFromResult(result),
         language: getLanguageFromResult(result),
         genre: getGenreFromResult(result),
@@ -126,4 +110,5 @@ module.exports = {
     getTransformedResultsFromResults,
     getBooksByLanguageFromTransformedResults,
     getSortedEnglishAndDutchBooks,
+    getYearOfPublicationFromResult,
 }
