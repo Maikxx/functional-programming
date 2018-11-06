@@ -1,3 +1,5 @@
+const _range = require('lodash.range')
+
 /**
 * Function that searches the result object for the frabl id, which can be used to query a detail page.
 *
@@ -92,18 +94,33 @@ const getBooksByLanguageFromTransformedResults = (transformedResults, language) 
 }
 
 /**
+* Function that loops through an array of years and find the books belonging to that year.
+*
+* @param {Array} books
+* @returns {Object} Object with years as keys and an array of books as value.
+*/
+const getBooksByYear = (books) => {
+    const currentYear = new Date().getFullYear()
+    const publicationYears = _range(currentYear - 5, currentYear)
+
+    return publicationYears.map(year => ({
+        [year]: books
+            ? books.filter(book => book.yearOfPublication === year)
+            : null
+    }))
+}
+
+/**
 * Function that loops through the transformed results and gives back the English and Dutch books.
 *
 * @param {object} englishAndDutchBooks
 * @returns {object} Object which contains two key value pairs (Dutch and English books, which are arrays)
 */
 const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) => {
-    return (dutchBooks && englishBooks)
-        ? {
-            "dut": dutchBooks,
-            "eng": englishBooks,
-        }
-        : {}
+    return {
+        "dut": getBooksByYear(dutchBooks),
+        "eng": getBooksByYear(englishBooks),
+    }
 }
 
 module.exports = {
