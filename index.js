@@ -63,7 +63,7 @@ const search = async (query, facet) => {
         if (transformedD3Data) {
             app.get('/', (req, res) => res.json(transformedD3Data))
             app.listen(port, () => console.log(`\nAvailable on: localhost:${port}`))
-            fs.writeFile('data.json', JSON.stringify(transformedD3Data))
+            fs.writeFile('data.json', JSON.stringify(transformedD3Data), (err) => err && console.error(err))
         }
     } catch (error) {
         console.error(error)
