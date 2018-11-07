@@ -89,6 +89,10 @@ The amount of English books that are published per year has increased in the pas
 
 ![sketch 2](docs/sketch_2.jpg)
 
+### Visualisation
+
+[Observable](https://beta.observablehq.com/d/ddabbcd1ef7a7741)
+
 ## Process
 
 ### Day 1
