@@ -37,7 +37,12 @@ const search = async (query, facet) => {
         refine: true,
         facet,
         count: 500,
-        filter: result => filters.filterByPublicationYear(result, maxBookAge)
+        filter: result => {
+            const publicationYear = getters.getYearOfPublicationFromResult(result)
+            const currentYear = new Date().getFullYear()
+
+            return publicationYear >= currentYear - maxBookAge
+        }
     })
 }
 
@@ -45,13 +50,13 @@ const search = async (query, facet) => {
     try {
         // Dutch
         const dutchResults = await search('language:dut', ['type(book)'])
-        const transformedDutchResults = dutchResults && getters.getTransformedResultsFromResults(dutchResults)
-        const dutchBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedDutchResults, 'dut')
+        const transformedDutchBooks = dutchResults && getters.getBooksFromResults(dutchResults)
+        const dutchBooks = transformedDutchBooks && getters.getBooksByLanguageFromBooks(transformedDutchBooks, 'dut')
 
         // English
         const englishResults = await search('language:eng', ['type(book)'])
-        const transformedEnglishResults = englishResults && getters.getTransformedResultsFromResults(englishResults)
-        const englishBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedEnglishResults, 'eng')
+        const transformedEnglishBooks = englishResults && getters.getBooksFromResults(englishResults)
+        const englishBooks = transformedEnglishBooks && getters.getBooksByLanguageFromBooks(transformedEnglishBooks, 'eng')
 
         // Transformed for D3
         const transformedDutchData = getters.getTransformedDataPointByLanguage(dutchBooks, 'dut')

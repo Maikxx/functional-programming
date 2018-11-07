@@ -1,9 +1,11 @@
 const _range = require('lodash.range')
+const filters = require('./filters.js')
 
 /**
 * Function that searches the result object for the frablid and returns it.
 *
 * @param {Object} result
+*
 * @returns {String}
 */
 const getFrablIdFromResult = result => {
@@ -16,6 +18,7 @@ const getFrablIdFromResult = result => {
 * Function that searches the result object for the title and returns it.
 *
 * @param {Object} result
+*
 * @returns {String}
 */
 const getShortTitleFromResult = result => {
@@ -29,6 +32,7 @@ const getShortTitleFromResult = result => {
 * Function that searches the result object for the language and returns it as a number.
 *
 * @param {Object} result
+*
 * @returns {Number}
 */
 const getYearOfPublicationFromResult = result => {
@@ -43,6 +47,7 @@ const getYearOfPublicationFromResult = result => {
 * Function that searches the result object for the language and returns it.
 *
 * @param {Object} result
+*
 * @returns {String}
 */
 const getLanguageFromResult = result => {
@@ -53,9 +58,11 @@ const getLanguageFromResult = result => {
 }
 
 /**
-* Function that searches the result object for the genre and transforms it to an array of strings.
+* Function that searches the result object for the genre
+* and transforms it to an array of strings.
 *
 * @param {Object} result
+*
 * @returns {Array}
 */
 const getGenreFromResult = result => {
@@ -68,10 +75,11 @@ const getGenreFromResult = result => {
 /**
 * Function that loops through the results and gives back a new format.
 *
-* @param {Object} results
+* @param {Object[]} results
+*
 * @returns {Array}
 */
-const getTransformedResultsFromResults = results => {
+const getBooksFromResults = results => {
     return results && results.map(result => ({
         frablId: getFrablIdFromResult(result),
         title: getShortTitleFromResult(result),
@@ -82,28 +90,45 @@ const getTransformedResultsFromResults = results => {
 }
 
 /**
-* Function that loops through the transformed results and gives back the English or Dutch books.
+* Function that loops through the transformed results
+* and gives back the English or Dutch books.
 *
-* @param {Object} transformedResults
-* @returns {Array}
+* @param {Object[]} books
+* @param {String} books[].frabId
+* @param {String} books[].title
+* @param {Number} books[].yearOfPublication
+* @param {String} books[].language
+* @param {String} books[].genre
+*
+* @param {String} language
+*
+* @returns {Oject[]}
 */
-const getBooksByLanguageFromTransformedResults = (transformedResults, language) => {
-    return transformedResults
-        ? transformedResults.filter(transformedResult => language === transformedResult.language)
+const getBooksByLanguageFromBooks = (books, language) => {
+    return books
+        ? filters.filterBooksByLanguage(books, language)
         : []
 }
 
 /**
-* Function that filters through the books and gives back the amount of books for that given year.
+* Function that filters through the books and gives back
+* the amount of books for that given year.
 *
-* @param {Object} books
+* @param {Object[]} books
+* @param {String} books[].frabId
+* @param {String} books[].title
+* @param {Number} books[].yearOfPublication
+* @param {String} books[].language
+* @param {String} books[].genre
+*
 * @param {Number} year
 * @param {String} language
+*
 * @returns {Number}
 */
 const getAmountOfBooksPerYear = (books, year, language) => {
     const key = `${language}-${year}`
-    const amountOfBooks = books.filter(book => book.yearOfPublication === year).length
+    const amountOfBooks = filters.filterBooksByYear(books, year).length
 
     return {
         [key]: amountOfBooks
@@ -111,10 +136,17 @@ const getAmountOfBooksPerYear = (books, year, language) => {
 }
 
 /**
-* Function that loops through an array of years and find the books belonging to that year.
+* Function that loops through an array of years and
+* find the books belonging to that year.
 *
-* @param {Array} books
-* @returns {Object}
+* @param {Object[]} books
+* @param {String} books[].frabId
+* @param {String} books[].title
+* @param {Number} books[].yearOfPublication
+* @param {String} books[].language
+* @param {String} books[].genre
+*
+* @returns {Object[]}
 */
 const getBooksByYear = (books, language) => {
     const currentYear = new Date().getFullYear()
@@ -126,9 +158,11 @@ const getBooksByYear = (books, language) => {
 /**
 * Function that gives back all the required information for D3.
 *
-* @param {Array} books
+* @param {Object[]} books
+* @param {Object[]} books[].series
 * @param {String} language
-* @returns {Array}
+*
+* @returns {Object[]}
 */
 const getTransformedDataPointByLanguage = (books, language) => {
     return getBooksByYear(books, language).map(yearBook => {
@@ -147,8 +181,8 @@ const getTransformedDataPointByLanguage = (books, language) => {
 }
 
 module.exports = {
-    getTransformedResultsFromResults,
-    getBooksByLanguageFromTransformedResults,
+    getBooksFromResults,
+    getBooksByLanguageFromBooks,
     getYearOfPublicationFromResult,
     getTransformedDataPointByLanguage,
 }
