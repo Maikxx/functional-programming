@@ -38,7 +38,7 @@ const search = async (query, facet) => {
             const publicationYear = getters.getYearOfPublicationFromResult(result)
             const currentYear = new Date().getFullYear()
 
-            return publicationYear >= currentYear - 5
+            return publicationYear >= currentYear - 10
         }
     })
 }

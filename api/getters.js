@@ -114,7 +114,7 @@ const getAmountOfBooksPerYear = (books, year, language) => ({
 */
 const getBooksByYear = (books, language) => {
     const currentYear = new Date().getFullYear()
-    const publicationYears = _range(currentYear - 5, currentYear + 1)
+    const publicationYears = _range(currentYear - 10, currentYear + 1)
 
     return publicationYears.map(year => getAmountOfBooksPerYear(books, year, language))
 }
