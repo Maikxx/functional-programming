@@ -33,12 +33,12 @@ const search = async (query, facet) => {
         librarian: true,
         refine: true,
         facet,
-        count: 200,
+        count: 500,
         filter: result => {
             const publicationYear = getters.getYearOfPublicationFromResult(result)
             const currentYear = new Date().getFullYear()
 
-            return publicationYear >= currentYear - 10
+            return publicationYear >= currentYear - 50
         }
     })
 }
