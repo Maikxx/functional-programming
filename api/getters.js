@@ -1,5 +1,4 @@
 const _range = require('lodash.range')
-const _uniqBy = require('lodash.uniqby')
 
 /**
 * Function that searches the result object for the frabl id, which can be used to query a detail page.
