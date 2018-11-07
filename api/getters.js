@@ -100,12 +100,12 @@ const getBooksByLanguageFromTransformedResults = (transformedResults, language) 
 * @param {Array} books
 * @returns {Object} Object with years as keys and an array of books as value.
 */
-const getBooksByYear = books => {
+const getBooksByYear = (books, language) => {
     const currentYear = new Date().getFullYear()
     const publicationYears = _range(currentYear - 5, currentYear + 1)
 
     return publicationYears.map(year => ({
-        [year]: books.filter(book => book.yearOfPublication === year)
+        [`${language}-${year}`]: books.filter(book => book.yearOfPublication === year).length
     }))
 }
 
@@ -123,8 +123,8 @@ const changeBookToDataPoint = book => ({
 */
 const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) =>
     ([
-        ..._uniqBy(...dutchBooks.map(changeBookToDataPoint), 'year'),
-        ..._uniqBy(...englishBooks.map(changeBookToDataPoint), 'year'),
+        ...dutchBooks.map(changeBookToDataPoint),
+        ...englishBooks.map(changeBookToDataPoint),
     ])
 
 module.exports = {

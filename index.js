@@ -33,7 +33,7 @@ const search = async (query, facet) => {
         librarian: true,
         refine: true,
         facet,
-        count: 50,
+        count: 10,
         filter: result => {
             const publicationYear = getters.getYearOfPublicationFromResult(result)
             const currentYear = new Date().getFullYear()
@@ -54,14 +54,34 @@ const search = async (query, facet) => {
         const englishBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedEnglishResults, 'eng')
 
         const sortedEnglishAndDutchBooks = getters.getSortedEnglishAndDutchBooks(dutchBooks, englishBooks)
-        const dutchYearBooks = getters.getBooksByYear(dutchBooks)
-        const englishYearKeys = getters.getBooksByYear(englishBooks)
 
-        Object.entries(dutchYearBooks).forEach(([key, value]) => console.log(key, value))
+        const transformedDutchData = getters.getBooksByYear(dutchBooks, 'dut').map(yearBook => {
+            const languageYearKey = Object.keys(yearBook)[0]
+            const languageKeyMap = languageYearKey.split('-')
+            const language = languageKeyMap[0]
+            const year = Number(languageKeyMap[1])
+            const count = yearBook[languageYearKey]
 
-        console.log(sortedEnglishAndDutchBooks)
+            return {
+                series: language,
+                year,
+                count,
+            }
+        })
 
-        // console.log(getters.getBooksForSeries(dutchBooks, englishBooks))
+        const transformedEnglishData = getters.getBooksByYear(dutchBooks, 'dut').map(yearBook => {
+            const languageYearKey = Object.keys(yearBook)[0]
+            const languageKeyMap = languageYearKey.split('-')
+            const language = languageKeyMap[0]
+            const year = Number(languageKeyMap[1])
+            const count = yearBook[languageYearKey]
+
+            return {
+                series: language,
+                year,
+                count,
+            }
+        })
 
         if (sortedEnglishAndDutchBooks) {
             app.get('/', (req, res) => res.json(sortedEnglishAndDutchBooks))
