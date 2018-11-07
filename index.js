@@ -24,8 +24,8 @@ const client = new API({
 * Function that searches the OBA api with the help of a query search string and a facet
 * Librarian and refine are both set to true.
 *
-* @param {string} query
-* @param {string} facet
+* @param {String} query
+* @param {String} facet
 */
 const search = async (query, facet) => {
     return await client.get('search', {
