@@ -2,6 +2,22 @@ const _range = require('lodash.range')
 const filters = require('./filters.js')
 
 /**
+* @typedef {Object[]} Books
+* @property {String} Books[].frablId
+* @property {String} Books[].title
+* @property {Number} Books[].yearOfPublication
+* @property {String} Books[].language
+* @property {String} Books[].genre
+*/
+
+/**
+* @typedef {Object[]} D3Data
+* @property {Number} D3Data[].count
+* @property {String} D3Data[].series
+* @property {Date} D3Data[].date
+*/
+
+/**
 * Function that searches the result object for the frablid and returns it.
 *
 * @param {Object} result
@@ -58,12 +74,11 @@ const getLanguageFromResult = result => {
 }
 
 /**
-* Function that searches the result object for the genre
-* and transforms it to an array of strings.
+* Function that searches the result object for the genre.
 *
 * @param {Object} result
 *
-* @returns {Array}
+* @returns {String}
 */
 const getGenreFromResult = result => {
     return result.genres
@@ -73,7 +88,7 @@ const getGenreFromResult = result => {
 }
 
 /**
-* Function that loops through the results and gives back a new format.
+* Function that loops through the results and returns a new format.
 *
 * @param {Object[]} results
 *
@@ -91,18 +106,12 @@ const getBooksFromResults = results => {
 
 /**
 * Function that loops through the transformed results
-* and gives back the English or Dutch books.
+* and returns the English or Dutch books.
 *
-* @param {Object[]} books
-* @param {String} books[].frabId
-* @param {String} books[].title
-* @param {Number} books[].yearOfPublication
-* @param {String} books[].language
-* @param {String} books[].genre
-*
+* @param {Books} books
 * @param {String} language
 *
-* @returns {Oject[]}
+* @returns {Books | []}
 */
 const getBooksByLanguageFromBooks = (books, language) => {
     return books
@@ -111,20 +120,14 @@ const getBooksByLanguageFromBooks = (books, language) => {
 }
 
 /**
-* Function that filters through the books and gives back
+* Function that filters through the books and returns
 * the amount of books for that given year.
 *
-* @param {Object[]} books
-* @param {String} books[].frabId
-* @param {String} books[].title
-* @param {Number} books[].yearOfPublication
-* @param {String} books[].language
-* @param {String} books[].genre
-*
+* @param {Books} books
 * @param {Number} year
 * @param {String} language
 *
-* @returns {Number}
+* @returns {Object}
 */
 const getAmountOfBooksPerYear = (books, year, language) => {
     const key = `${language}-${year}`
@@ -139,12 +142,7 @@ const getAmountOfBooksPerYear = (books, year, language) => {
 * Function that loops through an array of years and
 * find the books belonging to that year.
 *
-* @param {Object[]} books
-* @param {String} books[].frabId
-* @param {String} books[].title
-* @param {Number} books[].yearOfPublication
-* @param {String} books[].language
-* @param {String} books[].genre
+* @param {Books} books
 *
 * @returns {Object[]}
 */
@@ -156,13 +154,12 @@ const getBooksByYear = (books, language) => {
 }
 
 /**
-* Function that gives back all the required information for D3.
+* Function that returns all the required information for D3.
 *
-* @param {Object[]} books
-* @param {Object[]} books[].series
+* @param {Books} books
 * @param {String} language
 *
-* @returns {Object[]}
+* @returns {D3Data}
 */
 const getTransformedDataPointByLanguage = (books, language) => {
     return getBooksByYear(books, language).map(yearBook => {
@@ -180,9 +177,24 @@ const getTransformedDataPointByLanguage = (books, language) => {
     })
 }
 
+/**
+* Function that returns the combined array of English and Dutch books for D3.
+*
+* @param {Books} dutchBooks
+* @param {Books} englishBooks
+*
+* @returns {D3Data}
+*/
+const getD3Data = (dutchBooks, englishBooks) => {
+    const transformedDutchData = getTransformedDataPointByLanguage(dutchBooks, 'dut')
+    const transformedEnglishData = getTransformedDataPointByLanguage(englishBooks, 'eng')
+
+    return [...transformedDutchData, ...transformedEnglishData]
+}
+
 module.exports = {
     getBooksFromResults,
     getBooksByLanguageFromBooks,
     getYearOfPublicationFromResult,
-    getTransformedDataPointByLanguage,
+    getD3Data,
 }

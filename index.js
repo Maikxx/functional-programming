@@ -4,7 +4,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const fs = require('fs')
-const API = require('node-oba-api-wrapper')
 
 // Server
 const express = require('express')
@@ -13,55 +12,13 @@ const port = 3000
 
 // Getters and Filters
 const getters = require('./api/getters.js')
-const filters = require('./api/filters.js')
+const queries = require('./api/queries.js')
 
-// API
-const client = new API({
-    public: process.env.PUBLIC,
-    secret: process.env.SECRET,
-})
-
-/**
-* Function that searches the OBA api with the help of a query search string and a facet
-* Librarian and refine are both set to true.
-*
-* @param {String} query
-* @param {String} facet
-*/
-const search = async (query, facet) => {
-    const maxBookAge = process.env.MAX_BOOK_AGE
-
-    return await client.get('search', {
-        q: query,
-        librarian: true,
-        refine: true,
-        facet,
-        count: 500,
-        filter: result => {
-            const publicationYear = getters.getYearOfPublicationFromResult(result)
-            const currentYear = new Date().getFullYear()
-
-            return publicationYear >= currentYear - maxBookAge
-        }
-    })
-}
-
-(async () => {
+;(async () => {
     try {
-        // Dutch
-        const dutchResults = await search('language:dut', ['type(book)'])
-        const transformedDutchBooks = dutchResults && getters.getBooksFromResults(dutchResults)
-        const dutchBooks = transformedDutchBooks && getters.getBooksByLanguageFromBooks(transformedDutchBooks, 'dut')
-
-        // English
-        const englishResults = await search('language:eng', ['type(book)'])
-        const transformedEnglishBooks = englishResults && getters.getBooksFromResults(englishResults)
-        const englishBooks = transformedEnglishBooks && getters.getBooksByLanguageFromBooks(transformedEnglishBooks, 'eng')
-
-        // Transformed for D3
-        const transformedDutchData = getters.getTransformedDataPointByLanguage(dutchBooks, 'dut')
-        const transformedEnglishData = getters.getTransformedDataPointByLanguage(englishBooks, 'eng')
-        const transformedD3Data = [...transformedDutchData, ...transformedEnglishData]
+        const dutchBooks = await queries.queryBooksByLanguage('dut')
+        const englishBooks = await queries.queryBooksByLanguage('eng')
+        const transformedD3Data = getters.getD3Data(dutchBooks, englishBooks)
 
         if (transformedD3Data) {
             app.get('/', (req, res) => res.json(transformedD3Data))
