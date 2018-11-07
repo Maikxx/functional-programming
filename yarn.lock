@@ -296,6 +296,14 @@ cli-boxes@^1.0.0:
   resolved "https://registry.yarnpkg.com/cli-boxes/-/cli-boxes-1.0.0.tgz#4fa917c3e59c94a004cd61f8ee509da651687143"
   integrity sha1-T6kXw+WclKAEzWH47lCdplFocUM=
 
+cli-progress@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/cli-progress/-/cli-progress-2.1.0.tgz#a212e7e6b685687644ca703904ea49c34ee302c8"
+  integrity sha512-mY0GFIADTooScUe8ERTiQjJoOvXv1z0SzA8gzKO8imLqB7tBwEnNN10gWHcKoltDL4gLdi1GGoPEbxxbvJtR4A==
+  dependencies:
+    colors "^1.1.2"
+    string-width "^2.1.1"
+
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
@@ -325,6 +333,11 @@ colors@0.5.x:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/colors/-/colors-0.5.1.tgz#7d0023eaeb154e8ee9fce75dcb923d0ed1667774"
   integrity sha1-fQAj6usVTo7p/Oddy5I9DtFmd3Q=
+
+colors@^1.1.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/colors/-/colors-1.3.2.tgz#2df8ff573dfbf255af562f8ce7181d6b971a359b"
+  integrity sha512-rhP0JSBGYvpcNQj4s5AdShMeE5ahMop96cTeDl/v9qQQm2fYClE2QXZRi8wLzc+GmXSxdIqqbOIAhyObEXDbfQ==
 
 component-emitter@^1.2.1:
   version "1.2.1"
@@ -1466,6 +1479,14 @@ node-expat@^2.3.15:
     bindings "^1.2.1"
     nan "^2.10.0"
 
+node-oba-api-wrapper@maanlamp/node-oba-api-wrapper:
+  version "1.0.0"
+  resolved "https://codeload.github.com/maanlamp/node-oba-api-wrapper/tar.gz/6a5997c856e39a063d20ff9af71b95b12bec10c1"
+  dependencies:
+    chalk "^2.4.1"
+    cli-progress "^2.1.0"
+    oba-api "github:rijkvanzanten/node-oba-api"
+
 node-pre-gyp@^0.10.0:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.3.tgz#3070040716afdc778747b61b6887bf78880b80fc"
@@ -1563,7 +1584,7 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-oba-api@rijkvanzanten/node-oba-api:
+"oba-api@github:rijkvanzanten/node-oba-api":
   version "1.0.0"
   resolved "https://codeload.github.com/rijkvanzanten/node-oba-api/tar.gz/3ec2cf9b52f705711a2d59fb84e88cb448edca65"
   dependencies:

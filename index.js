@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const fs = require('fs')
-const API = require('./api/oba-wrapper.js')
+const API = require('node-oba-api-wrapper')
 
 // Server
 const express = require('express')
