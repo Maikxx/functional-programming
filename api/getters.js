@@ -126,7 +126,7 @@ const getTransformedDataPointByLanguage = (books, language) => {
 
         return {
             series: language,
-            date: year,
+            date: new Date(year, 1, 1),
             count,
         }
     })
