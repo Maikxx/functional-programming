@@ -11,8 +11,9 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-// Getters
+// Getters and Filters
 const getters = require('./api/getters.js')
+const filters = require('./api/filters.js')
 
 // API
 const client = new API({
@@ -28,18 +29,15 @@ const client = new API({
 * @param {String} facet
 */
 const search = async (query, facet) => {
+    const maxBookAge = process.env.MAX_BOOK_AGE
+
     return await client.get('search', {
         q: query,
         librarian: true,
         refine: true,
         facet,
         count: 500,
-        filter: result => {
-            const publicationYear = getters.getYearOfPublicationFromResult(result)
-            const currentYear = new Date().getFullYear()
-
-            return publicationYear >= currentYear - 15
-        }
+        filter: result => filters.filterByPublicationYear(result, maxBookAge)
     })
 }
 
