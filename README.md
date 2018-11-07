@@ -125,18 +125,30 @@ It is still not as good as [TypeScript](https://www.typescriptlang.org) in my op
 
 _The longer log of my process can be found [here](docs/PROCESS.md)!_
 
-## Dev Tools
+## Development
+
+### Tools
 
 * [Nodemon](https://nodemon.io)
 * [Yarn](https://yarnpkg.com/en/)
 
-## Packages
+### Packages
 
 **Disclaimer**
 
 I know I could have written my own code for this lodash package, but why would I reinvent the wheel.
 
 * [lodash.range](https://www.npmjs.com/package/lodash.range) - Used for creating an array of intermediate values by passing two values to this function.
+
+## Future enhancements
+
+* Convert everything to TypeScript.
+* Add more languages like French and German.
+* Bind this data with data about the nationalities of citizens living in Amsterdam (GDPR-friendly?).
+* Convert the D3 to client side code instead of Observable, so it can receive dynamic data from the server.
+* Add animations to the visualization.
+* Request a larger time frame than 15 years.
+* Enable more requests to be processed efficiently, so that the limit can go way higher.
 
 ## Honourable mentions
 
