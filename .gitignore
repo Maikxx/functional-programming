@@ -5,5 +5,4 @@ nodemon.json
 .env
 
 # Data files
-data.json
 search.error.json
