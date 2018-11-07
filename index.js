@@ -45,43 +45,22 @@ const search = async (query, facet) => {
 
 (async () => {
     try {
+        // Dutch
         const dutchResults = await search('language:dut', ['type(book)'])
         const transformedDutchResults = dutchResults && getters.getTransformedResultsFromResults(dutchResults)
         const dutchBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedDutchResults, 'dut')
 
+        // English
         const englishResults = await search('language:eng', ['type(book)'])
         const transformedEnglishResults = englishResults && getters.getTransformedResultsFromResults(englishResults)
         const englishBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedEnglishResults, 'eng')
 
+        // Sorted
         const sortedEnglishAndDutchBooks = getters.getSortedEnglishAndDutchBooks(dutchBooks, englishBooks)
 
-        const transformedDutchData = getters.getBooksByYear(dutchBooks, 'dut').map(yearBook => {
-            const languageYearKey = Object.keys(yearBook)[0]
-            const languageKeyMap = languageYearKey.split('-')
-            const language = languageKeyMap[0]
-            const year = Number(languageKeyMap[1])
-            const count = yearBook[languageYearKey]
-
-            return {
-                series: language,
-                year,
-                count,
-            }
-        })
-
-        const transformedEnglishData = getters.getBooksByYear(dutchBooks, 'dut').map(yearBook => {
-            const languageYearKey = Object.keys(yearBook)[0]
-            const languageKeyMap = languageYearKey.split('-')
-            const language = languageKeyMap[0]
-            const year = Number(languageKeyMap[1])
-            const count = yearBook[languageYearKey]
-
-            return {
-                series: language,
-                year,
-                count,
-            }
-        })
+        // Transformed for D3
+        const transformedDutchData = getters.getTransformedDataPointByLanguage(dutchBooks, 'dut')
+        const transformedEnglishData = getters.getTransformedDataPointByLanguage(dutchBooks, 'eng')
 
         if (sortedEnglishAndDutchBooks) {
             app.get('/', (req, res) => res.json(sortedEnglishAndDutchBooks))

@@ -109,6 +109,35 @@ const getBooksByYear = (books, language) => {
     }))
 }
 
+/**
+* Function that gives back all the required information for D3.
+*
+* @param {Array} books
+* @param {string} language
+* @returns {Array}
+*/
+const getTransformedDataPointByLanguage = (books, language) => {
+    return getBooksByYear(books, language).map(yearBook => {
+        const languageYearKey = Object.keys(yearBook)[0]
+        const languageKeyMap = languageYearKey.split('-')
+        const language = languageKeyMap[0]
+        const year = Number(languageKeyMap[1])
+        const count = yearBook[languageYearKey]
+
+        return {
+            series: language,
+            year,
+            count,
+        }
+    })
+}
+
+/**
+* Function that takes a book and transforms it ot an object which can be used by D3, without the count.
+*
+* @param {Object} book
+* @returns {Object}
+*/
 const changeBookToDataPoint = book => ({
     series: book.language,
     count: undefined,
@@ -119,7 +148,7 @@ const changeBookToDataPoint = book => ({
 * Function that loops through the transformed results and gives back the English and Dutch books.
 *
 * @param {object} englishAndDutchBooks
-* @returns {object} Object which contains two key value pairs (Dutch and English books, which are objects containing years)
+* @returns {object}
 */
 const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) =>
     ([
@@ -132,5 +161,5 @@ module.exports = {
     getBooksByLanguageFromTransformedResults,
     getSortedEnglishAndDutchBooks,
     getYearOfPublicationFromResult,
-    getBooksByYear,
+    getTransformedDataPointByLanguage,
 }
