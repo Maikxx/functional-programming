@@ -10,17 +10,11 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
-    "chalk": "^2.4.1",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
-    "jsonpath": "^1.0.0",
     "lodash.range": "^3.2.0",
     "lodash.uniqby": "^4.7.0",
-    "node-oba-api-wrapper": "maanlamp/node-oba-api-wrapper",
-    "query-string": "^6.2.0",
-    "xml-to-json-promise": "^0.0.3",
-    "xml2json": "^0.11.2"
+    "node-oba-api-wrapper": "maanlamp/node-oba-api-wrapper"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"
