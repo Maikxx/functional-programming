@@ -1,7 +1,7 @@
 const _range = require('lodash.range')
 
 /**
-* Function that searches the result object for the frabl id, which can be used to query a detail page.
+* Function that searches the result object for the frablid and returns it.
 *
 * @param {Object} result
 * @returns {String}
@@ -13,7 +13,7 @@ const getFrablIdFromResult = result => {
 }
 
 /**
-* Function that searches the result object for the short title.
+* Function that searches the result object for the title and returns it.
 *
 * @param {Object} result
 * @returns {String}
@@ -26,7 +26,7 @@ const getShortTitleFromResult = result => {
 }
 
 /**
-* Function that searches the result object for the publication year and transforms it to a number.
+* Function that searches the result object for the language and returns it as a number.
 *
 * @param {Object} result
 * @returns {Number}
@@ -40,10 +40,10 @@ const getYearOfPublicationFromResult = result => {
 }
 
 /**
-* Function that searches the result object for the languages and transforms it to an array of strings.
+* Function that searches the result object for the language and returns it.
 *
 * @param {Object} result
-* @returns {Array} Array of languages.
+* @returns {String}
 */
 const getLanguageFromResult = result => {
     return result.languages
@@ -101,9 +101,14 @@ const getBooksByLanguageFromTransformedResults = (transformedResults, language) 
 * @param {String} language
 * @returns {Number}
 */
-const getAmountOfBooksPerYear = (books, year, language) => ({
-    [`${language}-${year}`]: books.filter(book => book.yearOfPublication === year).length
-})
+const getAmountOfBooksPerYear = (books, year, language) => {
+    const key = `${language}-${year}`
+    const amountOfBooks = books.filter(book => book.yearOfPublication === year).length
+
+    return {
+        [key]: amountOfBooks
+    }
+}
 
 /**
 * Function that loops through an array of years and find the books belonging to that year.
