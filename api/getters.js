@@ -126,40 +126,15 @@ const getTransformedDataPointByLanguage = (books, language) => {
 
         return {
             series: language,
-            year,
+            date: year,
             count,
         }
     })
 }
 
-/**
-* Function that takes a book and transforms it ot an object which can be used by D3, without the count.
-*
-* @param {Object} book
-* @returns {Object}
-*/
-const changeBookToDataPoint = book => ({
-    series: book.language,
-    count: undefined,
-    year: book.yearOfPublication,
-})
-
-/**
-* Function that loops through the transformed results and gives back the English and Dutch books.
-*
-* @param {object} englishAndDutchBooks
-* @returns {object}
-*/
-const getSortedEnglishAndDutchBooks = (dutchBooks, englishBooks) =>
-    ([
-        ...dutchBooks.map(changeBookToDataPoint),
-        ...englishBooks.map(changeBookToDataPoint),
-    ])
-
 module.exports = {
     getTransformedResultsFromResults,
     getBooksByLanguageFromTransformedResults,
-    getSortedEnglishAndDutchBooks,
     getYearOfPublicationFromResult,
     getTransformedDataPointByLanguage,
 }

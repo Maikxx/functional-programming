@@ -55,17 +55,15 @@ const search = async (query, facet) => {
         const transformedEnglishResults = englishResults && getters.getTransformedResultsFromResults(englishResults)
         const englishBooks = transformedDutchResults && getters.getBooksByLanguageFromTransformedResults(transformedEnglishResults, 'eng')
 
-        // Sorted
-        const sortedEnglishAndDutchBooks = getters.getSortedEnglishAndDutchBooks(dutchBooks, englishBooks)
-
         // Transformed for D3
         const transformedDutchData = getters.getTransformedDataPointByLanguage(dutchBooks, 'dut')
-        const transformedEnglishData = getters.getTransformedDataPointByLanguage(dutchBooks, 'eng')
+        const transformedEnglishData = getters.getTransformedDataPointByLanguage(englishBooks, 'eng')
+        const transformedD3Data = [...transformedDutchData, ...transformedEnglishData]
 
-        if (sortedEnglishAndDutchBooks) {
-            app.get('/', (req, res) => res.json(sortedEnglishAndDutchBooks))
+        if (transformedD3Data) {
+            app.get('/', (req, res) => res.json(transformedD3Data))
             app.listen(port, () => console.log(`\nAvailable on: localhost:${port}`))
-            fs.writeFile('data.json', JSON.stringify(sortedEnglishAndDutchBooks))
+            fs.writeFile('data.json', JSON.stringify(transformedD3Data))
         }
     } catch (error) {
         console.error(error)
