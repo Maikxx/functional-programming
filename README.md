@@ -1,5 +1,29 @@
 # Functional Programming
 
+## Installing
+
+*Clone the repository*
+
+`git clone https://github.com/Maikxx/functional-programming.git`
+
+*Navigate to the repository*
+
+`cd functional-programming`
+
+*Install the dependencies with either yarn or npm*
+
+`yarn` / `npm install`
+
+**Warning, read before executing**
+
+Because of a bug in the `oba-api` dependency of the `node-oba-api-wrapper` I use to query for results, you will need to change the `baseUrl` variable, in the `index.js` of the `oba-api`, to be `const baseUrl = 'http://zoeken.oba.nl/api/v1/';`
+
+This is very hacky, unfortunately, but there has been made a PR for this issue by a collegue of the HvA to change this. When this PR gets approved this issue will not be of relevance anymore and you can skip to the next step.
+
+*Start the service*
+
+`yarn serve` / `npm run serve`
+
 ## Research
 
 The research for this assessment was done for Mark, employee of the OBA.
