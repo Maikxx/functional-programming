@@ -154,7 +154,6 @@ The main reason for this choice, was because I thought about the future, which w
 Having choosen the type of the visualization, I started having a go at D3 in Observable.
 The following graph is what I eventually came up with.
 The graph would be way more intersting if there was not only data per year, but also per month that books are published, which would lead to the visuaization having more depth.
-It would also be interesting to look at ways in which the visualization could have smooth edges instead of being blocky.
 
 [Observable](https://beta.observablehq.com/d/ddabbcd1ef7a7741)
 
