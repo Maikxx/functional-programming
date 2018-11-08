@@ -74,3 +74,7 @@ I had to transform some things before it worked with the datastructure the D3 vi
 
 ### Day 9
 
+Today I started cleaning up the graph and making it look a little bit better.
+I split a lot of code into their own functions in Observable, and made the code more readable.
+I also managed to get the curved shape that I wanted to have for the graph.
+The rest of the time I spent analyzing the graph and try to come up with conclusions.
