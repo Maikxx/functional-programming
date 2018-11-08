@@ -20,6 +20,22 @@ Because of a bug in the `oba-api` dependency of the `node-oba-api-wrapper` I use
 
 This is very hacky, unfortunately, but there has been made a PR for this issue by a collegue of the HvA to change this. When this PR gets approved this issue will not be of relevance anymore and you can skip to the next step.
 
+*Setup environment*
+
+Copy the `.env.example` file and rename it to `.env`.
+Then set a public and secret key for the OBA API to the corresponding variable.
+Finally select the maximal age of books you wish to query for (Number).
+
+Create a `nodemon.json` file in the root of the project and paste in the following:
+
+```
+    {
+        "env": {
+            "NODE_ENV": "development"
+        }
+    }
+```
+
 *Start the service*
 
 `yarn serve` / `npm run serve`
