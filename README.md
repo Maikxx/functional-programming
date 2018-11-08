@@ -160,7 +160,22 @@ It would also be interesting to look at ways in which the visualization could ha
 
 ### Conclusions
 
-**TODO**
+The hypothese hypothese can be seen as partially true, because the amount of books that are published (and brought into the OBA) has increased a lot since 2003, however the correlation of the division between the languages is not true.
+The division almost looks like it's 1:1 in some years, while in the most recent year (in this case 2018) the amount of English books at the OBA is more than double the amount of Dutch books.
+
+**What does this tell me, one might ask?**
+
+As I stated before, it is interesting to look for specific events in the graph and bind it to another data set, like the amount of expats that are living in Amsterdam, or the amount of foreign students in Amsterdam.
+For now I have not bound these datasets, unfortunately, however the graph still shows multiple strange peaks and valleys.
+
+For example, take a look at the major increase in English books, published in 2008, owned by the OBA. The reason behind this weird peak is unknown, but feel free to take a guess.
+
+Also note the valley created by the decrease in Dutch books, that are published in 2014, owned by the OBA.
+
+### Final words
+
+* The sample size of 500 Dutch and 500 English books during a period of 15 years is really low, so to really get some meaning out of this graph you would need to sample a ton more books.
+* Adding other languages will definately make it a more fun graph to watch.
 
 ## Process
 
