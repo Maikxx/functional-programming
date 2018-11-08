@@ -2,6 +2,16 @@
 
 ## Research
 
+The research for this assessment was done for Mark, employee of the OBA.
+We had a briefing from Mark about the possibilities of this assessment last monday, where we also gained access to the search API of the OBA.
+
+What he asked from us, was to make a data visualization from data that could be optained by querying the API.
+I started writing down a lot of research questions and topics, after looking at the data that was available to us.
+After having several research questions, I wrote down how I could split that question up in pieces, to make it more easy to solve.
+
+I did this by thinking of a lot of sub questions per major topic.
+The research questions and their sub questions can be found below.
+
 ### Research questions
 
 1. How has the amount of different book genres published, in the past 15 years, changed?
@@ -48,13 +58,17 @@
     * How much English speaking expats are there in Amsterdam per year?
     * How has the amount of English books at the OBA changed in the past 15 years?
 
+After having a lot of questions to choose from, I decided it was time to select one and start focussing on that one. I tried to pick a question which was interesting to me.
+
 ### Main research question
 
-**Question**
+I choose the following **research question**:
 
-* How has the division between Dutch and English study-books at the OBA changed in the past 15 years?
+_How has the division between Dutch and English study-books at the OBA changed in the past 15 years?_
 
-**Sub questions**
+The main reason this was interesting to me, was because I thought that I could combine this data with data of inhabitants of Amsterdam at a later point, to see why the graphq is as it is.
+
+The **Sub questions** belonging to this research question are the following:
 
 * What is the amount of books in a given language per year?
 * Has this division increased or decreased?
@@ -63,35 +77,50 @@
 * _If available_: Does the increase or decrease have something to do with the increased amount of English speaking people in Amsterdam?
 * Is this increase or decrease truthy for all books, not just for study-books?
 
-**Variables**
+After selecting these sub questions, I took a look at what **variables** I would need to solve them, which are:
 
 * Language of a book
 * Date of publication
 * Genre of a book
 * _If available_: nationality of the renter
 
+While I was thinking of the variables required to solve this research question, I also thought of the hypothese, which would allow me to set an expectation for the visualization.
+
 ### Hypothese
 
-The amount of English books that are published per year has increased in the past fifteen years, while Dutch books are staying around the same amount.
+_The amount of English books that are published per year has increased in the past fifteen years, while Dutch books are staying around the same amount._
+
+I then looked up a lot of visualizations and decided to list the ones which were most appealing to me and which are possible for tackling the research questions hypothese. Which meant that it would need to show something over time, which in term ruled out a lot of visualization types. I decided to do a few quick and dirty sketches of what could possibly work.
 
 ### Possible visualisation types
 
-* Multi line diagram.
-* Stacked area chart.
-* Stacked bar chart.
-* Multi bar chart.
-* Flowchart.
-* Multi area chart.
-
-### Sketches
+* Multi line diagram
+* Stacked area chart
+* Stacked bar chart
+* Multi bar chart
+* Flowchart
+* Multi area chart
 
 ![sketch 1](docs/sketch_1.jpg)
-
 ![sketch 2](docs/sketch_2.jpg)
+
+### Choosen visualization type
+
+After looking at the types I listed above, I went for the **stacked area chart**.
+The main reason for this choice, was because I thought about the future, which would lead to maybe showing more languages in the visualization. I thought the stacked area chart was very much suited for this.
 
 ### Visualisation
 
+Having choosen the type of the visualization, I started having a go at D3 in Observable.
+The following graph is what I eventually came up with.
+The graph would be way more intersting if there was not only data per year, but also per month that books are published, which would lead to the visuaization having more depth.
+It would also be interesting to look at ways in which the visualization could have smooth edges instead of being blocky.
+
 [Observable](https://beta.observablehq.com/d/ddabbcd1ef7a7741)
+
+### Conclusions
+
+**TODO**
 
 ## Process
 
