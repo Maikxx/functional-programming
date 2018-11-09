@@ -170,7 +170,7 @@ The main reason for this choice, was because I thought about the future, which w
 
 ### Visualization
 
-Having choosen the type of the visualization, I started having a go at D3 in Observable.
+Having choosen the type of the visualization, I started having a go at [D3](https://d3js.org) in [Observable](https://beta.observablehq.com).
 The following graph is what I eventually came up with.
 The graph would be way more intersting if there was not only data per year, but also per month that books are published, which would lead to the visuaization having more depth.
 
@@ -206,7 +206,7 @@ The full log of my process can be found [here](docs/PROCESS.md)!
 During these two weeks I mainly focussed myself on helping others, and finding help with others, mainly [Chelsea Doeleman](https://github.com/chelseadoeleman), [Linda de Haan](https://github.com/LindadeHaan) and [Jessie Mason](https://github.com/jessiemasonx).
 
 These two weeks were more difficult for me than the **Frontend-Applications** weeks, because the API has proven itself to be quite a challenge to work with.
-The fact that this was challenging, was mainly because I had not worked with API's (except for GraphQL) a lot until now.
+The fact that this was challenging, was mainly because I had not worked with API's (except for [GraphQL](https://graphql.org/learn/)) a lot until now.
 The other reason was simply because the API gives back an overly complex datastructure.
 
 To deal with this, I got a lot of help from mainly [Daniël](https://github.com/DanielvandeVelde), [Wouter](https://github.com/maanlamp) and [Chelsea](https://github.com/chelseadoeleman).
@@ -215,13 +215,13 @@ I used the paginated boilerplate from Wouter as a base for communicating with th
 
 Chelsea was a great help at generalizing complex data structures, to a way that it is more easy for me to write it.
 
-Your daily dose of functional programming can be found in [this file](api/getters.js), which is where I wrote all my functions, which handle the getting of incoming data and transforming this data to D3 usable JSON.
+Your daily dose of functional programming can be found in [this file](api/getters.js), which is where I wrote all my functions, which handle the getting of incoming data and transforming this data to [D3](https://d3js.org) usable JSON.
 
 It has been proven to be pretty tough to focus on both writing code, getting a deeper understanding in this data and visualizing this pretty much all at the same time.
 
 I had hoped this concept of mine (languages of books at the OBA) could be combined with data of expats living in Amsterdam and the increase or decrease in that in the past years, unfortunately I ran out of time to do combine this.
 
-I also found out that writing transformation code (for D3) before knowing what your client wants to have is not a good idea, since I needed to rewrite it multiple times over afterwards.
+I also found out that writing transformation code (for [D3](https://d3js.org)) before knowing what your client wants to have is not a good idea, since I needed to rewrite it multiple times over afterwards.
 
 What I quickly realised after starting getting dependent of others peoples code, was that when something breaks, you will have to help them find the fix, otherwise you are stuck as well.
 
@@ -246,10 +246,10 @@ I know I could have written my own code for this lodash package, but why would I
 
 ## Future enhancements
 
-* Convert everything to TypeScript.
+* Convert everything to [TypeScript](https://www.typescriptlang.org).
 * Add more languages like French and German.
-* Bind this data with data about the nationalities of citizens living in Amsterdam (GDPR-friendly?).
-* Convert the D3 to client side code instead of Observable, so it can receive dynamic data from the server.
+* Bind this data with data about the nationalities of citizens living in Amsterdam ([GDPR](https://eugdpr.org)-friendly?).
+* Convert the [D3](https://d3js.org) to client side code instead of Observable, so it can receive dynamic data from the server.
 * Add animations to the visualization.
 * Request a larger time frame than 15 years.
 * Enable more requests to be processed efficiently, so that the limit can go way higher.

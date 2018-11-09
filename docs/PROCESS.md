@@ -60,7 +60,7 @@ _"The amount of English books that are published per year has increased in the p
 
 ## Day 6
 
-I originally planned to make a stacked area chart with the data that I had gathered, however after seeing the insane syntax and more complex data structure, I went for the simple line diagram. Which I had tried to get running in Observable.
+I originally planned to make a stacked area chart with the data that I had gathered, however after seeing the insane syntax and more complex data structure, I went for the simple line diagram. Which I had tried to get running in [Observable](https://beta.observablehq.com).
 
 Unfortunately I did not get this running today, because the data structure I wrote needs to change a lot for this to work.
 
@@ -77,12 +77,12 @@ Starting off the day with a bug, an hour later and still no fix, so I decided to
 
 This bug showed itself, because funny enough another developer probably broke something in the staging environment.
 
-For the rest of the day I mainly focussed on helping others with getting their code to work, as well as getting my D3 up and running with the data I get back from the OBA API.
-I had to transform some things before it worked with the datastructure the D3 visualization wanted to have.
+For the rest of the day I mainly focussed on helping others with getting their code to work, as well as getting my [D3](https://d3js.org) up and running with the data I get back from the OBA API.
+I had to transform some things before it worked with the datastructure the [D3](https://d3js.org) visualization wanted to have.
 
 ## Day 9
 
 Today I started cleaning up the graph and making it look a little bit better.
-I split a lot of code into their own functions in Observable, and made the code more readable.
+I split a lot of code into their own functions in [Observable](https://beta.observablehq.com), and made the code more readable.
 I also managed to get the curved shape that I wanted to have for the graph.
 The rest of the time I spent analyzing the graph and try to come up with conclusions.
