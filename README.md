@@ -1,5 +1,24 @@
 # Functional Programming
 
+## Table of contents
+
+* [Installing](#Installing)
+* [Research](#Research)
+    * [Research questions](#Research-questions)
+    * [Main research question](#Main-research-question)
+    * [Hypothese](#Hypothese)
+    * [Possible visualization types](#Possible-visualization-types)
+    * [Choosen visualization type](#Choosen-visualization-type)
+    * [Visualization](#Visualization)
+    * [Conclusions](#Conclusions)
+    * [Final words](#Final-words)
+* [Process](#Process)
+    * [Day by day process](#Day-by-day-process)
+    * [Summary](#Summary)
+* [Development](#Development)
+* [Future enhancements](#Future-enhancements)
+* [Honourable mentions](#Honourable-mentions)
+
 ## Installing
 
 *Clone the repository*
@@ -132,7 +151,7 @@ _The amount of English books that are published per year has increased in the pa
 
 I then looked up a lot of visualizations and decided to list the ones which were most appealing to me and which are possible for tackling the research questions hypothese. Which meant that it would need to show something over time, which in term ruled out a lot of visualization types. I decided to do a few quick and dirty sketches of what could possibly work.
 
-### Possible visualisation types
+### Possible visualization types
 
 * Multi line diagram
 * Stacked area chart
@@ -149,7 +168,7 @@ I then looked up a lot of visualizations and decided to list the ones which were
 After looking at the types I listed above, I went for the **stacked area chart**.
 The main reason for this choice, was because I thought about the future, which would lead to maybe showing more languages in the visualization. I thought the stacked area chart was very much suited for this.
 
-### Visualisation
+### Visualization
 
 Having choosen the type of the visualization, I started having a go at D3 in Observable.
 The following graph is what I eventually came up with.
@@ -178,6 +197,10 @@ Also note the valley created by the decrease in Dutch books, that are published 
 
 ## Process
 
+### Day by day process
+
+The full log of my process can be found [here](docs/PROCESS.md)!
+
 ### Summary
 
 During these two weeks I mainly focussed myself on helping others, and finding help with others, mainly [Chelsea Doeleman](https://github.com/chelseadoeleman), [Linda de Haan](https://github.com/LindadeHaan) and [Jessie Mason](https://github.com/jessiemasonx).
@@ -205,8 +228,6 @@ What I quickly realised after starting getting dependent of others peoples code,
 In the end, I have gotten to like this style of writing a lot, it keeps things (like [index.js](index.js)) very readable, while also gaining the ability to do some kind of type checking per function in JavaScript (I did not know [these kind of comments](api/getters.js) were possible).
 
 It is still not as good as [TypeScript](https://www.typescriptlang.org) in my opinion though. 👀
-
-_The longer log of my process can be found [here](docs/PROCESS.md)!_
 
 ## Development
 
