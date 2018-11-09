@@ -174,6 +174,8 @@ Having choosen the type of the visualization, I started having a go at [D3](http
 The following graph is what I eventually came up with.
 The graph would be way more intersting if there was not only data per year, but also per month that books are published, which would lead to the visuaization having more depth.
 
+![Visualization](docs/visualization.png)
+
 [Observable](https://beta.observablehq.com/d/ddabbcd1ef7a7741)
 
 ### Conclusions
