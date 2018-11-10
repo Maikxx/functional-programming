@@ -5,7 +5,7 @@
   "main": "index.js",
   "author": "Maikel van Veen <maikeloo10@hotmail.com>",
   "scripts": {
-    "serve": "nodemon --watch index.js --watch api"
+    "serve": "nodemon"
   },
   "license": "MIT",
   "private": true,
@@ -16,6 +16,11 @@
     "node-oba-api-wrapper": "maanlamp/node-oba-api-wrapper"
   },
   "devDependencies": {
-    "nodemon": "^1.18.5"
+    "@types/express": "^4.16.0",
+    "@types/lodash.range": "^3.2.4",
+    "nodemon": "^1.18.5",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
   }
 }
