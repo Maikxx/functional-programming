@@ -266,3 +266,7 @@ I know I could have written my own code for this lodash package, but why would I
     Wouter created the [boilerplate for pagination](https://github.com/maanlamp/node-oba-api-wrapper) with the OBA API.
 * [Chelsea](https://github.com/chelseadoeleman):
     Chelsea helped me get over my overly complex thinking and just getting stuff done.
+    
+## License
+
+This code is licensed as [MIT](LICENSE) by [Maikel van Veen](https://github.com/maikxx).
