@@ -1,4 +1,5 @@
-import { Query, Facet } from "./types/Query"
+import { Query, Facet, Result } from "./types/Query"
+import { Book } from "./types/Book";
 
 const API = require('node-oba-api-wrapper')
 const getters = require('./getters.ts')
@@ -9,7 +10,7 @@ const client = new API({
     secret: process.env.SECRET,
 })
 
-const search = async (query: Query, facet: Facet): Promise<any> => {
+const search = async (query: Query, facet: Facet): Promise<Result[]> => {
     const maxBookAge = Number(process.env.MAX_BOOK_AGE)
 
     return await client.get('search', {
@@ -27,7 +28,7 @@ const search = async (query: Query, facet: Facet): Promise<any> => {
     })
 }
 
-const queryBooksByLanguage = async (language: string): Promise<any> => {
+const queryBooksByLanguage = async (language: string): Promise<Book[]> => {
     const results = await search(`language:${language}`, ['type(book)'])
     const transformedBooks = results && getters.getBooksFromResults(results)
 
